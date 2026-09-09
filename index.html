@@ -4109,17 +4109,20 @@
       }
     </script>
     <script>
-      /* Lumora reveal engine v2, fade/slide reveals (NO blur) replacing the
-               Webflow IX2 reveals that no longer fire. Bulletproof: a safety net forces
-               any element still hidden to show, so text/images never stay invisible. */
+      /* Lumora reveal engine v3: bulletproof against formatting, whitespace, and scroll states.
+         Animates elements gracefully into view, and guarantees all contents remain 100% visible. */
       (function () {
         function runReveals() {
-          if (!window.gsap) return;
-          var hasST = !!window.ScrollTrigger;
+          var hasGSAP = !!window.gsap;
+          var hasST = hasGSAP && !!window.ScrollTrigger;
           if (hasST) gsap.registerPlugin(ScrollTrigger);
-          var els = gsap.utils.toArray("[data-w-id]").filter(function (el) {
+
+          // Select all elements that have inline opacity: 0
+          var els = Array.from(
+            document.querySelectorAll("[data-w-id], [style*='opacity']")
+          ).filter(function (el) {
             var s = el.getAttribute("style") || "";
-            if (s.indexOf("opacity:0") === -1) return false;
+            if (!/opacity\s*:\s*0/i.test(s)) return false;
             if (
               el.closest(".navbar_wrap") ||
               el.closest(".w-nav") ||
@@ -4128,46 +4131,65 @@
               return false;
             return true;
           });
-          els.forEach(function (el) {
-            gsap.set(el, { clearProps: "transform,filter" });
-            gsap.fromTo(
-              el,
-              { opacity: 0, y: 40 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.9,
-                ease: "power2.out",
-                scrollTrigger: hasST
-                  ? { trigger: el, start: "top 97%", once: true }
-                  : undefined,
-              },
-            );
-          });
-          if (hasST) {
-            window.addEventListener("load", function () {
-              ScrollTrigger.refresh();
-            });
-            ScrollTrigger.refresh();
-          }
-          /* Safety net: after a beat, force anything still invisible to show */
-          setTimeout(function () {
+
+          if (hasGSAP) {
             els.forEach(function (el) {
-              if (parseFloat(getComputedStyle(el).opacity) === 0) {
-                gsap.set(el, {
+              gsap.set(el, { clearProps: "transform,filter" });
+              gsap.fromTo(
+                el,
+                { opacity: 0, y: 30 },
+                {
                   opacity: 1,
                   y: 0,
-                  clearProps: "transform,filter",
-                });
-              }
+                  duration: 0.8,
+                  ease: "power2.out",
+                  scrollTrigger: hasST
+                    ? { trigger: el, start: "top 95%", once: true }
+                    : undefined,
+                }
+              );
             });
-          }, 2600);
+
+            if (hasST) {
+              window.addEventListener("load", function () {
+                ScrollTrigger.refresh();
+              });
+              ScrollTrigger.refresh();
+            }
+          } else {
+            // Direct fallback if GSAP is not present
+            els.forEach(function (el) {
+              el.style.opacity = "1";
+              el.style.transform = "none";
+            });
+          }
+
+          // Safety net: force any still-hidden element to be visible
+          setTimeout(function () {
+            document
+              .querySelectorAll("[style*='opacity'], [data-w-id]")
+              .forEach(function (el) {
+                if (
+                  !el.closest(".navbar_wrap") &&
+                  !el.closest(".w-nav") &&
+                  !el.closest(".w-dropdown-list")
+                ) {
+                  var s = el.getAttribute("style") || "";
+                  if (/opacity\s*:\s*0/i.test(s) || parseFloat(getComputedStyle(el).opacity) === 0) {
+                    if (hasGSAP) {
+                      gsap.set(el, { opacity: 1, y: 0, clearProps: "transform,filter" });
+                    }
+                    el.style.opacity = "1";
+                  }
+                }
+              });
+          }, 800);
         }
-        if (document.readyState !== "loading") setTimeout(runReveals, 150);
-        else
-          document.addEventListener("DOMContentLoaded", function () {
-            setTimeout(runReveals, 150);
-          });
+
+        if (document.readyState !== "loading") setTimeout(runReveals, 50);
+        else document.addEventListener("DOMContentLoaded", function () {
+          setTimeout(runReveals, 50);
+        });
       })();
     </script>
 
