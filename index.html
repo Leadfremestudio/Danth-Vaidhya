@@ -15,7 +15,46 @@
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <link href="assets/css/lumora.css?v=20260614f" rel="stylesheet" type="text/css"/>
         <style>
-            
+            /* Service pinned cards: pin starts after the h2 heading with full card visibility */
+            @media screen and (min-width: 992px) {
+                .section_service {
+                    position: relative;
+                }
+                .service_sticky-trigger {
+                    margin-top: 20px;
+                }
+                .service_sticky-camera {
+                    top: 80px !important;
+                    position: sticky !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    justify-content: center !important;
+                }
+                .service_item {
+                    padding: clamp(24px, 3vh, 36px) !important;
+                    min-height: clamp(400px, 58vh, 500px) !important;
+                    height: auto !important;
+                    align-items: center !important;
+                }
+                .service-item_showcase {
+                    min-height: clamp(320px, 50vh, 420px) !important;
+                    height: 100% !important;
+                }
+                .service_content {
+                    grid-column-gap: 28px !important;
+                    grid-row-gap: clamp(16px, 3vh, 44px) !important;
+                    height: 100% !important;
+                    justify-content: space-between !important;
+                }
+                .service-item_info {
+                    grid-row-gap: 12px !important;
+                }
+                .service-item_info p {
+                    font-size: 15px !important;
+                    line-height: 1.5 !important;
+                    margin-bottom: 0 !important;
+                }
+            }
         </style>
         <link href="https://fonts.googleapis.com" rel="preconnect"/>
         <link href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -529,53 +568,53 @@
                     </div>
                 </section>
                 <section class="section_service">
-                    <div class="section-padding padding-0x120">
+                    <div class="section-padding padding-0x120" style="padding-top: 60px;">
                         <div class="container">
-                            <div class="service_sticky-trigger">
-                                <div class="service_sticky-camera">
-                                    <div class="margin-bottom margin-56px">
-                                        <div class="home-service_header">
-                                            <div class="home-service_header-content">
-                                                <div data-w-id="62f3134b-0a64-f0b4-9c52-b0a14947355a" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="margin-bottom margin-12px">
-                                                    <div class="section_tag">
-                                                        <div class="icon_wrap is-small">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" vector-effect="non-scaling-stroke" preserveAspectRatio="none">
-                                                                <path d="M12 5.45455H7.31455L10.6255 2.14364L9.85636 1.37455L6.54545 4.68545V0H5.45455V4.68545L2.14364 1.37455L1.37455 2.14364L4.68545 5.45455H0V6.54545H4.68545L1.37455 9.85636L2.14364 10.6255L5.45455 7.31455V12H6.54545V7.31455L9.85636 10.6255L10.6255 9.85636L7.31455 6.54545H12V5.45455Z" fill="currentColor"></path>
-                                                            </svg>
-                                                        </div>
-                                                        <div>Our Services</div>
-                                                    </div>
+                            <div class="margin-bottom margin-56px">
+                                <div class="home-service_header">
+                                    <div class="home-service_header-content">
+                                        <div data-w-id="62f3134b-0a64-f0b4-9c52-b0a14947355a" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="margin-bottom margin-12px">
+                                            <div class="section_tag">
+                                                <div class="icon_wrap is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" vector-effect="non-scaling-stroke" preserveAspectRatio="none">
+                                                        <path d="M12 5.45455H7.31455L10.6255 2.14364L9.85636 1.37455L6.54545 4.68545V0H5.45455V4.68545L2.14364 1.37455L1.37455 2.14364L4.68545 5.45455H0V6.54545H4.68545L1.37455 9.85636L2.14364 10.6255L5.45455 7.31455V12H6.54545V7.31455L9.85636 10.6255L10.6255 9.85636L7.31455 6.54545H12V5.45455Z" fill="currentColor"></path>
+                                                    </svg>
                                                 </div>
-                                                <div class="margin-bottom margin-16px">
-                                                    <h2 data-w-id="e7b05ae6-acb7-e587-0efc-41d9940f7862" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0">
-                                                        Comprehensive Dental Care for <span class="text-highlighted">Every Smile</span>
-                                                    </h2>
-                                                </div>
-                                                <p data-w-id="6dfeacc9-c462-98c5-51c9-b2e521b474e8" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0">At Lumora, we combine expertise, compassion, and modern technology to create a dental experience that patients truly value.</p>
-                                            </div>
-                                            <div id="w-node-_17c80cc5-2289-6c10-a51b-0f6f1a06e885-965ec33c" data-w-id="17c80cc5-2289-6c10-a51b-0f6f1a06e885" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="home-service_button">
-                                                <a data-wf--button-primary--variant="base" href="contact.html#book" class="button_primary w-inline-block">
-                                                    <div class="button_inner">
-                                                        <div class="button-text_wrap">
-                                                            <div class="button_text">See All Services</div>
-                                                        </div>
-                                                        <div class="button-icon_group">
-                                                            <div class="button-icon_wrap">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" vector-effect="non-scaling-stroke" preserveAspectRatio="none">
-                                                                    <path d="M4.70139 0.75L10.5303 0.750201L10.5303 6.55165M0.530334 10.75L10.2896 0.990932" stroke="currentColor" stroke-width="1.5"></path>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="button-icon_wrap is-hover">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" vector-effect="non-scaling-stroke" preserveAspectRatio="none">
-                                                                    <path d="M4.70139 0.75L10.5303 0.750201L10.5303 6.55165M0.530334 10.75L10.2896 0.990932" stroke="currentColor" stroke-width="1.5"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
+                                                <div>Our Services</div>
                                             </div>
                                         </div>
+                                        <div class="margin-bottom margin-16px">
+                                            <h2 data-w-id="e7b05ae6-acb7-e587-0efc-41d9940f7862" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0">
+                                                Comprehensive Dental Care for <span class="text-highlighted">Every Smile</span>
+                                            </h2>
+                                        </div>
+                                        <p data-w-id="6dfeacc9-c462-98c5-51c9-b2e521b474e8" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0">At Lumora, we combine expertise, compassion, and modern technology to create a dental experience that patients truly value.</p>
                                     </div>
+                                    <div id="w-node-_17c80cc5-2289-6c10-a51b-0f6f1a06e885-965ec33c" data-w-id="17c80cc5-2289-6c10-a51b-0f6f1a06e885" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="home-service_button">
+                                        <a data-wf--button-primary--variant="base" href="contact.html#book" class="button_primary w-inline-block">
+                                            <div class="button_inner">
+                                                <div class="button-text_wrap">
+                                                    <div class="button_text">See All Services</div>
+                                                </div>
+                                                <div class="button-icon_group">
+                                                    <div class="button-icon_wrap">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" vector-effect="non-scaling-stroke" preserveAspectRatio="none">
+                                                            <path d="M4.70139 0.75L10.5303 0.750201L10.5303 6.55165M0.530334 10.75L10.2896 0.990932" stroke="currentColor" stroke-width="1.5"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="button-icon_wrap is-hover">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" vector-effect="non-scaling-stroke" preserveAspectRatio="none">
+                                                            <path d="M4.70139 0.75L10.5303 0.750201L10.5303 6.55165M0.530334 10.75L10.2896 0.990932" stroke="currentColor" stroke-width="1.5"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service_sticky-trigger">
+                                <div class="service_sticky-camera">
                                     <div class="scroll-mobile_trigger">
                                         <div data-w-id="71cef23b-d7ba-346b-b7f2-b6a0be118667" style="-webkit-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="scroll-mobile_camera">
                                             <div class="service_wrap">
