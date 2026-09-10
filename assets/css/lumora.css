@@ -8495,7 +8495,7 @@ h1, h2, h3, h4, h5, h6,
 
   .navbar-mobile_item {
     display: flex !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     gap: 12px !important;
     text-decoration: none !important;
     color: var(--primitive-color--primary-900, #011f23) !important;
