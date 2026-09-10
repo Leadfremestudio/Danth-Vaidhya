@@ -15,258 +15,417 @@
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <link href="assets/css/lumora.css?v=20260614f" rel="stylesheet" type="text/css"/>
         <style>
+            /* ==========================================================================
+               HERO BANNER (CURVED BOTTOM WITH TITLE & BREADCRUMB)
+               ========================================================================== */
             .contact-hero_wrap {
                 position: relative;
                 padding-top: 140px;
-                padding-bottom: 80px;
-                background-color: var(--primitive-color--primary-900, #011f23);
-                color: #ffffff;
+                padding-bottom: 64px;
+                background: linear-gradient(145deg, rgba(1, 31, 35, 0.94) 0%, rgba(2, 47, 52, 0.90) 60%, rgba(36, 163, 177, 0.85) 100%), url('assets/img/gen_about-hero-image.jpg') center/cover no-repeat;
+                border-radius: 0 0 36px 36px;
                 overflow: hidden;
+                text-align: center;
+                box-shadow: 0 16px 40px rgba(1, 31, 35, 0.12);
             }
-            .contact-hero_bg-glow {
-                position: absolute;
-                top: -120px;
-                right: -100px;
-                width: 550px;
-                height: 550px;
-                border-radius: 50%;
-                background: radial-gradient(circle, rgba(36, 163, 177, 0.28) 0%, rgba(1, 31, 35, 0) 70%);
-                pointer-events: none;
+            @media (max-width: 991px) {
+                .contact-hero_wrap {
+                    padding-top: 120px;
+                    padding-bottom: 50px;
+                    border-radius: 0 0 28px 28px;
+                }
+            }
+            @media (max-width: 767px) {
+                .contact-hero_wrap {
+                    padding-top: 100px;
+                    padding-bottom: 40px;
+                    border-radius: 0 0 22px 22px;
+                }
+            }
+            @media (max-width: 479px) {
+                .contact-hero_wrap {
+                    padding-top: 90px;
+                    padding-bottom: 34px;
+                    border-radius: 0 0 18px 18px;
+                }
             }
             .contact-hero_content {
-                max-width: 780px;
+                max-width: 700px;
                 margin: 0 auto;
-                text-align: center;
+                padding: 0 16px;
                 position: relative;
                 z-index: 2;
             }
             .contact-hero_title {
-                color: #ffffff;
-                font-size: clamp(32px, 5vw, 54px);
-                line-height: 1.15;
-                font-weight: 700;
-                margin-top: 16px;
-                margin-bottom: 20px;
-                letter-spacing: -0.8px;
-            }
-            .contact-hero_sub {
-                font-size: 18px;
-                line-height: 1.6;
-                color: rgba(255, 255, 255, 0.85);
-                max-width: 640px;
-                margin: 0 auto 32px;
-            }
-            .contact-badges_row {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 16px;
-                margin-top: 10px;
-            }
-            .contact-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 8px 18px;
-                background: rgba(255, 255, 255, 0.08);
-                border: 1px solid rgba(255, 255, 255, 0.15);
-                border-radius: 100px;
-                font-size: 14px;
-                color: #e2f1f3;
-                backdrop-filter: blur(8px);
-            }
-            .contact-badge_dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background-color: var(--primitive-color--primary-500, #24a3b1);
-                box-shadow: 0 0 10px var(--primitive-color--primary-500, #24a3b1);
-            }
-
-            /* Main contact grid */
-            .section_contact-main {
-                padding: 90px 0;
-                background-color: #f7fafb;
-            }
-            .contact-grid_layout {
-                display: grid;
-                grid-template-columns: 1fr 1.1fr;
-                gap: 48px;
-                align-items: start;
-            }
-            @media (max-width: 991px) {
-                .contact-grid_layout {
-                    grid-template-columns: 1fr;
-                    gap: 40px;
-                }
-            }
-
-            /* Info Cards */
-            .contact-info_col {
-                display: flex;
-                flex-direction: column;
-                gap: 24px;
-            }
-            .contact-card {
-                background: #ffffff;
-                border-radius: 20px;
-                padding: 32px;
-                box-shadow: 0 12px 36px rgba(2, 47, 52, 0.06);
-                border: 1px solid rgba(2, 47, 52, 0.06);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            .contact-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 18px 45px rgba(2, 47, 52, 0.10);
-            }
-            .contact-card_icon-box {
-                width: 52px;
-                height: 52px;
-                border-radius: 14px;
-                background: rgba(36, 163, 177, 0.12);
-                color: var(--primitive-color--primary-600, #1c91a1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 20px;
-            }
-            .contact-card_icon-box svg {
-                width: 26px;
-                height: 26px;
-            }
-            .contact-card_title {
                 font-family: var(--font, 'Sora', sans-serif);
-                font-size: 20px;
-                font-weight: 600;
-                color: var(--primitive-color--primary-900, #011f23);
-                margin-bottom: 8px;
+                color: #ffffff;
+                font-size: clamp(30px, 5vw, 50px);
+                font-weight: 700;
+                margin: 0 0 10px 0;
+                letter-spacing: -0.5px;
+                line-height: 1.15;
             }
-            .contact-card_desc {
-                font-size: 15px;
-                line-height: 1.55;
-                color: #586566;
-                margin-bottom: 16px;
-            }
-            .contact-card_action-link {
+            .contact-breadcrumb {
                 display: inline-flex;
                 align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
                 gap: 8px;
-                font-size: 16px;
+                font-size: clamp(11px, 2.5vw, 13px);
                 font-weight: 600;
-                color: var(--primitive-color--primary-600, #1c91a1);
+                letter-spacing: 1.8px;
+                text-transform: uppercase;
+            }
+            .contact-breadcrumb .breadcrumb-link {
+                color: rgba(255, 255, 255, 0.75);
                 text-decoration: none;
                 transition: color 0.2s ease;
             }
-            .contact-card_action-link:hover {
-                color: var(--primitive-color--primary-900, #011f23);
+            .contact-breadcrumb .breadcrumb-link:hover {
+                color: #7fe3ef;
             }
-
-            .hours-list {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            .hours-item {
-                display: flex;
-                justify-content: space-between;
-                padding: 10px 0;
-                border-bottom: 1px dashed rgba(2, 47, 52, 0.12);
+            .contact-breadcrumb .breadcrumb-separator {
+                color: rgba(255, 255, 255, 0.45);
                 font-size: 14px;
-                color: #435051;
             }
-            .hours-item:last-child {
-                border-bottom: none;
-            }
-            .hours-day {
-                font-weight: 600;
-                color: var(--primitive-color--primary-900, #011f23);
+            .contact-breadcrumb .breadcrumb-current {
+                color: var(--primitive-color--primary-500, #24a3b1);
             }
 
-            /* Form Card */
-            .contact-form_card {
-                background: #ffffff;
-                border-radius: 24px;
-                padding: 40px;
-                box-shadow: 0 24px 60px rgba(2, 47, 52, 0.09);
-                border: 1px solid rgba(2, 47, 52, 0.08);
-                position: relative;
+            /* ==========================================================================
+               MAIN GET IN TOUCH & FORM SECTION
+               ========================================================================== */
+            .section_contact-main {
+                padding: 72px 0 90px;
+                background-color: #f7fafb;
             }
-            @media (max-width: 576px) {
-                .contact-form_card {
-                    padding: 26px 20px;
+            @media (max-width: 991px) {
+                .section_contact-main {
+                    padding: 56px 0 72px;
                 }
             }
-            .contact-form_card .lead-form_head {
-                margin-bottom: 24px;
+            @media (max-width: 767px) {
+                .section_contact-main {
+                    padding: 40px 0 56px;
+                }
             }
-            .form-grid_row {
+            .section_contact-main .container,
+            .section_facilities .container,
+            .contact-hero_wrap .container {
+                padding-left: 28px;
+                padding-right: 28px;
+                box-sizing: border-box;
+            }
+            @media (max-width: 991px) {
+                .section_contact-main .container,
+                .section_facilities .container,
+                .contact-hero_wrap .container {
+                    padding-left: 24px;
+                    padding-right: 24px;
+                }
+            }
+            @media (max-width: 767px) {
+                .section_contact-main .container,
+                .section_facilities .container,
+                .contact-hero_wrap .container {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+            @media (max-width: 479px) {
+                .section_contact-main .container,
+                .section_facilities .container,
+                .contact-hero_wrap .container {
+                    padding-left: 16px;
+                    padding-right: 16px;
+                }
+            }
+            .contact-touch_grid {
+                display: grid;
+                grid-template-columns: 1fr 1.2fr;
+                gap: 48px;
+                align-items: start;
+            }
+            @media (max-width: 1080px) {
+                .contact-touch_grid {
+                    gap: 36px;
+                }
+            }
+            @media (max-width: 991px) {
+                .contact-touch_grid {
+                    grid-template-columns: 1fr;
+                    gap: 36px;
+                }
+            }
+
+            /* Left Info Column */
+            .touch-info_col {
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+            }
+            .touch-tag {
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 1.8px;
+                text-transform: uppercase;
+                color: var(--primitive-color--primary-500, #24a3b1);
+                margin-bottom: 10px;
+            }
+            .touch-heading {
+                font-family: var(--font, 'Sora', sans-serif);
+                font-size: clamp(28px, 4vw, 42px);
+                font-weight: 700;
+                color: var(--primitive-color--primary-900, #011f23);
+                line-height: 1.18;
+                margin: 0 0 14px 0;
+                letter-spacing: -0.5px;
+            }
+            .touch-desc {
+                font-size: clamp(14px, 2vw, 15px);
+                line-height: 1.65;
+                color: #586566;
+                margin: 0 0 28px 0;
+                max-width: 480px;
+            }
+            .touch-list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                width: 100%;
+            }
+            .touch-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 14px;
+                text-decoration: none;
+                color: inherit;
+                transition: transform 0.2s ease;
+                min-width: 0;
+            }
+            @media (min-width: 992px) {
+                .touch-item:hover {
+                    transform: translateX(4px);
+                }
+            }
+            .touch-icon_wrap {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background-color: rgba(36, 163, 177, 0.12);
+                color: var(--primitive-color--primary-600, #1c91a1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                margin-top: 2px;
+                transition: background-color 0.2s ease, color 0.2s ease;
+            }
+            .touch-icon_wrap svg {
+                width: 20px;
+                height: 20px;
+            }
+            .touch-item:hover .touch-icon_wrap {
+                background-color: var(--primitive-color--primary-500, #24a3b1);
+                color: #ffffff;
+            }
+            .touch-item_content {
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                flex: 1;
+            }
+            .touch-item_value {
+                font-size: clamp(14px, 2vw, 15px);
+                font-weight: 600;
+                color: var(--primitive-color--primary-900, #011f23);
+                line-height: 1.5;
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+            .touch-divider {
+                height: 1px;
+                background-color: rgba(1, 31, 35, 0.08);
+                width: 100%;
+                max-width: 480px;
+            }
+
+            /* Right Form Card */
+            .touch-form_card {
+                background: #ffffff;
+                border-radius: 20px;
+                padding: 36px;
+                border: 1px solid rgba(2, 47, 52, 0.08);
+                box-shadow: 0 14px 40px rgba(2, 47, 52, 0.05);
+                position: relative;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+            @media (max-width: 767px) {
+                .touch-form_card {
+                    padding: 28px 22px;
+                    border-radius: 16px;
+                }
+            }
+            @media (max-width: 479px) {
+                .touch-form_card {
+                    padding: 22px 16px;
+                    border-radius: 14px;
+                }
+            }
+            .touch-form_row {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 16px;
+                margin-bottom: 16px;
             }
-            @media (max-width: 576px) {
-                .form-grid_row {
+            @media (max-width: 640px) {
+                .touch-form_row {
                     grid-template-columns: 1fr;
+                    gap: 14px;
+                    margin-bottom: 14px;
                 }
             }
-            .contact-form_label {
-                display: block;
+            .touch-form_group {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 16px;
+                min-width: 0;
+            }
+            .touch-form_row .touch-form_group {
+                margin-bottom: 0;
+            }
+            .touch-form_label {
                 font-size: 13px;
                 font-weight: 600;
                 color: var(--primitive-color--primary-900, #011f23);
                 margin-bottom: 6px;
                 letter-spacing: -0.2px;
             }
-            .contact-input_field,
-            .contact-select_field,
-            .contact-textarea_field {
+            .required-star {
+                color: #e53e3e;
+                font-weight: 700;
+            }
+            .touch-form_input,
+            .touch-form_textarea {
                 width: 100%;
-                background: #f4f8f8;
-                border: 1px solid #dbe6e7;
-                border-radius: 12px;
-                padding: 14px 16px;
+                background: #f8fafb;
+                border: 1px solid #e2ecec;
+                border-radius: 10px;
+                padding: 13px 15px;
                 font-family: inherit;
                 font-size: 15px;
                 color: #011f23;
                 outline: none;
                 transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
                 box-sizing: border-box;
-                margin-bottom: 18px;
+                -webkit-appearance: none;
             }
-            .contact-input_field:focus,
-            .contact-select_field:focus,
-            .contact-textarea_field:focus {
+            @media (max-width: 767px) {
+                .touch-form_input,
+                .touch-form_textarea {
+                    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+                    padding: 12px 14px;
+                }
+            }
+            .touch-form_input::placeholder,
+            .touch-form_textarea::placeholder {
+                color: #9cb0b2;
+                font-size: 14px;
+            }
+            .touch-form_input:focus,
+            .touch-form_textarea:focus {
                 border-color: var(--primitive-color--primary-500, #24a3b1);
                 background-color: #ffffff;
                 box-shadow: 0 0 0 3px rgba(36, 163, 177, 0.15);
             }
-            .contact-textarea_field {
+            .touch-form_textarea {
                 min-height: 110px;
                 resize: vertical;
+                line-height: 1.5;
             }
-            .contact-submit_btn {
-                width: 100%;
-                padding: 16px;
-                background-color: var(--primitive-color--primary-500, #24a3b1);
+            .touch-form_action {
+                display: flex;
+                justify-content: flex-start;
+                margin-top: 4px;
+            }
+            @media (max-width: 640px) {
+                .touch-form_action {
+                    justify-content: stretch;
+                }
+            }
+            .touch-submit_btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 14px 28px;
+                background-color: var(--primitive-color--primary-900, #011f23);
                 color: #ffffff;
                 border: none;
-                border-radius: 12px;
+                border-radius: 10px;
                 font-family: var(--font, 'Sora', sans-serif);
-                font-size: 16px;
-                font-weight: 600;
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
                 cursor: pointer;
-                transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+                transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+                box-shadow: 0 8px 20px rgba(1, 31, 35, 0.18);
+            }
+            @media (max-width: 640px) {
+                .touch-submit_btn {
+                    width: 100%;
+                    padding: 15px;
+                }
+            }
+            .touch-submit_btn:hover {
+                background-color: var(--primitive-color--primary-500, #24a3b1);
+                transform: translateY(-2px);
                 box-shadow: 0 10px 24px rgba(36, 163, 177, 0.35);
             }
-            .contact-submit_btn:hover {
-                background-color: var(--primitive-color--primary-600, #1c91a1);
-                transform: translateY(-2px);
-                box-shadow: 0 14px 30px rgba(36, 163, 177, 0.45);
-            }
-            .contact-submit_btn:active {
+            .touch-submit_btn:active {
                 transform: translateY(0);
             }
 
+            /* Google Map Card */
+            .contact-map_card {
+                margin-top: 48px;
+                border-radius: 20px;
+                overflow: hidden;
+                border: 1px solid rgba(2, 47, 52, 0.08);
+                box-shadow: 0 14px 40px rgba(2, 47, 52, 0.06);
+                background: #ffffff;
+                height: 380px;
+                width: 100%;
+                position: relative;
+            }
+            @media (max-width: 991px) {
+                .contact-map_card {
+                    margin-top: 40px;
+                    border-radius: 16px;
+                    height: 320px;
+                }
+            }
+            @media (max-width: 767px) {
+                .contact-map_card {
+                    margin-top: 32px;
+                    border-radius: 14px;
+                    height: 260px;
+                }
+            }
+            @media (max-width: 479px) {
+                .contact-map_card {
+                    margin-top: 24px;
+                    border-radius: 12px;
+                    height: 230px;
+                }
+            }
+            .contact-map_card iframe {
+                width: 100% !important;
+                height: 100% !important;
+                border: 0;
+                display: block;
+            }
             /* Facility highlight cards */
             .section_facilities {
                 padding: 100px 0;
@@ -409,36 +568,16 @@
             </div>
 
             <main class="main-wrapper">
-                <!-- HERO SECTION -->
+                                <!-- HERO BANNER SECTION (CURVED BOTTOM WITH TITLE & BREADCRUMB) -->
                 <section class="contact-hero_wrap">
-                    <div class="contact-hero_bg-glow"></div>
                     <div class="container">
                         <div class="contact-hero_content">
-                            <div class="section_tag" style="background: rgba(255,255,255,0.12); color: #7fe3ef; border: 1px solid rgba(127,227,239,0.3);">
-                                <div class="icon_wrap is-small">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none">
-                                        <path d="M12 5.45455H7.31455L10.6255 2.14364L9.85636 1.37455L6.54545 4.68545V0H5.45455V4.68545L2.14364 1.37455L1.37455 2.14364L4.68545 5.45455H0V6.54545H4.68545L1.37455 9.85636L2.14364 10.6255L5.45455 7.31455V12H6.54545V7.31455L9.85636 10.6255L10.6255 9.85636L7.31455 6.54545H12V5.45455Z" fill="currentColor"></path>
-                                    </svg>
-                                </div>
-                                <div>Contact Danth Vaidhya</div>
-                            </div>
-                            <h1 class="contact-hero_title">Let's Start Your Journey to a Healthier, Brighter Smile</h1>
-                            <p class="contact-hero_sub">Welcome to Danth Vaidhya Dental Clinic &amp; Implant Centre in Amalanagar, Thrissur. Led by Dr. Aswin (MDS Prosthodontist), our team provides advanced, gentle oral healthcare for the entire family.</p>
-                            
-                            <div class="contact-badges_row">
-                                <div class="contact-badge">
-                                    <span class="contact-badge_dot"></span>
-                                    <span>Fast 10-Minute Callback</span>
-                                </div>
-                                <div class="contact-badge">
-                                    <span class="contact-badge_dot"></span>
-                                    <span>Same-Day Emergency Slots</span>
-                                </div>
-                                <div class="contact-badge">
-                                    <span class="contact-badge_dot"></span>
-                                    <span>Modern &amp; Painless Dentistry</span>
-                                </div>
-                            </div>
+                            <h1 class="contact-hero_title">Contact</h1>
+                            <nav class="contact-breadcrumb" aria-label="Breadcrumb">
+                                <a href="index.html" class="breadcrumb-link">HOME</a>
+                                <span class="breadcrumb-separator">&#8250;</span>
+                                <span class="breadcrumb-current">CONTACT</span>
+                            </nav>
                         </div>
                     </div>
                 </section>
@@ -446,142 +585,126 @@
                 <!-- MAIN CONTACT & FORM SECTION -->
                 <section class="section_contact-main" id="book">
                     <div class="container">
-                        <div class="contact-grid_layout">
-                            <!-- LEFT: CLINIC CONTACT INFO -->
-                            <div class="contact-info_col">
-                                <!-- CARD 1: Phone & WhatsApp -->
-                                <div class="contact-card">
-                                    <div class="contact-card_icon-box">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                                        </svg>
-                                    </div>
-                                    <div class="contact-card_title">Call &amp; WhatsApp</div>
-                                    <div class="contact-card_desc">Speak directly with our front desk team for immediate appointments or emergency queries.</div>
-                                    <a href="tel:+91 92490 52513" class="contact-card_action-link">
-                                        <span>+91 92490 52513</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 12 12" fill="none">
-                                            <path d="M4.70139 0.75L10.5303 0.750201L10.5303 6.55165M0.530334 10.75L10.2896 0.990932" stroke="currentColor" stroke-width="1.5"></path>
-                                        </svg>
-                                    </a>
-                                </div>
+                        <div class="contact-touch_grid">
+                            <!-- LEFT COLUMN: GET IN TOUCH -->
+                            <div class="touch-info_col">
+                                <div class="touch-tag">CONTACT US</div>
+                                <h2 class="touch-heading">Get In <span class="text-highlighted">Touch</span></h2>
+                                <p class="touch-desc">
+                                    Have a question, need an urgent consultation, or want to book an appointment with Dr. Aswin? Reach out to us through any of the channels below or fill out the form.
+                                </p>
 
-                                <!-- CARD 2: Email -->
-                                <div class="contact-card">
-                                    <div class="contact-card_icon-box">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                                        </svg>
-                                    </div>
-                                    <div class="contact-card_title">Email Us</div>
-                                    <div class="contact-card_desc">For detailed medical history consultations, treatment estimates, or corporate inquiries.</div>
-                                    <a href="mailto:care@danthvaidhya.com?subject=Inquiry" class="contact-card_action-link">
-                                        <span>care@danthvaidhya.com</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 12 12" fill="none">
-                                            <path d="M4.70139 0.75L10.5303 0.750201L10.5303 6.55165M0.530334 10.75L10.2896 0.990932" stroke="currentColor" stroke-width="1.5"></path>
-                                        </svg>
+                                <div class="touch-list">
+                                    <!-- ITEM 1: PHONE -->
+                                    <a href="tel:+919249052513" class="touch-item" title="Call Danth Vaidhya Dental Clinic">
+                                        <div class="touch-icon_wrap">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="touch-item_content">
+                                            <div class="touch-item_value">+91 92490 52513</div>
+                                        </div>
                                     </a>
-                                </div>
 
-                                <!-- CARD 3: Hours & Location -->
-                                <div class="contact-card">
-                                    <div class="contact-card_icon-box">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+                                    <div class="touch-divider"></div>
+
+                                    <!-- ITEM 2: EMAIL -->
+                                    <a href="mailto:care@danthvaidhya.com?subject=Inquiry" class="touch-item" title="Email Danth Vaidhya Dental Clinic">
+                                        <div class="touch-icon_wrap">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                                <polyline points="22,6 12,13 2,6"></polyline>
+                                            </svg>
+                                        </div>
+                                        <div class="touch-item_content">
+                                            <div class="touch-item_value">care@danthvaidhya.com</div>
+                                        </div>
+                                    </a>
+
+                                    <div class="touch-divider"></div>
+
+                                    <!-- ITEM 3: ADDRESS -->
+                                    <div class="touch-item">
+                                        <div class="touch-icon_wrap">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                <circle cx="12" cy="10" r="3"></circle>
+                                            </svg>
+                                        </div>
+                                        <div class="touch-item_content">
+                                            <div class="touch-item_value">Reliable Arcade, Thrissur–Kunnamkulam Road, Amalanagar, Thrissur, Kerala - 680555</div>
+                                        </div>
                                     </div>
-                                    <div class="contact-card_title">Operating Hours</div>
-                                    <ul class="hours-list">
-                                        <li class="hours-item">
-                                            <span class="hours-day">Monday – Friday</span>
-                                            <span>9:00 AM – 8:00 PM</span>
-                                        </li>
-                                        <li class="hours-item">
-                                            <span class="hours-day">Saturday</span>
-                                            <span>9:00 AM – 6:00 PM</span>
-                                        </li>
-                                        <li class="hours-item">
-                                            <span class="hours-day">Sunday</span>
-                                            <span>10:00 AM – 2:00 PM (Appointments &amp; Emergencies)</span>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
 
-                            <!-- RIGHT: INTERACTIVE CONTACT & APPOINTMENT FORM -->
-                            <div class="contact-form_card">
-                                <div class="lead-form_head">
-                                    <div class="lead-form_title" style="font-size: 26px; margin-bottom: 6px;">Schedule Your Consultation</div>
-                                    <div class="lead-form_sub" style="font-size: 15px;">Send your details below and our clinic manager will confirm your slot within 10 minutes.</div>
-                                </div>
-
-                                <form class="contact-lead-form" onsubmit="return handleContactSubmit(event)">
-                                    <div class="form-grid_row">
-                                        <div>
-                                            <label class="contact-form_label">Full Name *</label>
-                                            <input class="contact-input_field" type="text" name="name" placeholder="e.g. Rahul Sharma" required />
+                            <!-- RIGHT COLUMN: FORM CARD -->
+                            <div class="touch-form_card">
+                                <form class="contact-touch-form" onsubmit="return handleContactSubmit(event)">
+                                    <div class="touch-form_row">
+                                        <div class="touch-form_group">
+                                            <label class="touch-form_label">Full Name <span class="required-star">*</span></label>
+                                            <input type="text" name="name" class="touch-form_input" placeholder="Enter Your Name Here" required />
                                         </div>
-                                        <div>
-                                            <label class="contact-form_label">Phone Number *</label>
-                                            <input class="contact-input_field" type="tel" name="phone" placeholder="e.g. +91 98765 43210" required />
+                                        <div class="touch-form_group">
+                                            <label class="touch-form_label">Number <span class="required-star">*</span></label>
+                                            <input type="tel" name="phone" class="touch-form_input" placeholder="Number" required />
                                         </div>
                                     </div>
 
-                                    <div class="form-grid_row">
-                                        <div>
-                                            <label class="contact-form_label">Email Address</label>
-                                            <input class="contact-input_field" type="email" name="email" placeholder="name@example.com" />
+                                    <div class="touch-form_row">
+                                        <div class="touch-form_group">
+                                            <label class="touch-form_label">Email Address <span class="required-star">*</span></label>
+                                            <input type="email" name="email" class="touch-form_input" placeholder="Enter email" required />
                                         </div>
-                                        <div>
-                                            <label class="contact-form_label">Treatment Needed</label>
-                                            <select class="contact-select_field" name="service">
-                                                <option value="Dental Implants & Prosthetics">Dental Implants &amp; Prosthetics (Dr. Aswin)</option>
-                                                <option value="Single-Sitting Root Canal">Root Canal Treatment (Single-Sitting)</option>
-                                                <option value="Routine Checkup & Cleaning">Routine Cleaning &amp; Checkup</option>
-                                                <option value="Braces & Clear Aligners">Braces &amp; Clear Aligners</option>
-                                                <option value="Pediatric Dentistry">Pediatric Dentistry (Kids Care)</option>
-                                                <option value="Cosmetic Dentistry & Whitening">Cosmetic Dentistry &amp; Whitening</option>
-                                                <option value="Tooth Pain / Emergency">Tooth Pain / Emergency Care</option>
-                                                <option value="General Consultation">General Dental Consultation</option>
-                                            </select>
+                                        <div class="touch-form_group">
+                                            <label class="touch-form_label">Subject <span class="required-star">*</span></label>
+                                            <input type="text" name="subject" class="touch-form_input" placeholder="Subject" required />
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <label class="contact-form_label">Preferred Date &amp; Time (Optional)</label>
-                                        <input class="contact-input_field" type="text" name="time" placeholder="e.g. Tomorrow afternoon, or Saturday morning" />
+                                    <div class="touch-form_group">
+                                        <label class="touch-form_label">Comments <span class="required-star">*</span></label>
+                                        <textarea name="comments" class="touch-form_textarea" placeholder="Comments" rows="4" required></textarea>
                                     </div>
 
-                                    <div>
-                                        <label class="contact-form_label">Message or Concern (Optional)</label>
-                                        <textarea class="contact-textarea_field" name="notes" placeholder="Please mention any symptoms, specific dental questions, or preferences..."></textarea>
-                                    </div>
-
-                                    <button class="contact-submit_btn" type="submit">Confirm &amp; Request Appointment</button>
-                                    <div style="font-size: 12px; color: #849394; text-align: center; margin-top: 12px;">
-                                        🔒 Your privacy is fully respected. Instant confirmation via WhatsApp / Call.
+                                    <div class="touch-form_action">
+                                        <button type="submit" class="touch-submit_btn">
+                                            <span>SEND MESSAGE</span>
+                                        </button>
                                     </div>
                                 </form>
 
                                 <div class="contact-success_state" style="display: none; text-align: center; padding: 40px 20px;">
-                                    <div style="width: 64px; height: 64px; background: rgba(36, 163, 177, 0.15); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="color: #24a3b1;">
+                                    <div style="width: 60px; height: 60px; background: rgba(36, 163, 177, 0.15); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="color: #24a3b1;">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <div class="lead-form_title" style="font-size: 24px; margin-bottom: 8px;">Appointment Request Received!</div>
-                                    <div class="lead-form_sub" style="font-size: 15px; max-width: 420px; margin: 0 auto 20px;">
-                                        Thank you! Our care coordinator has received your request and will connect with you via WhatsApp / Phone within 10 minutes to finalize your time.
+                                    <div style="font-family: var(--font, 'Sora', sans-serif); font-size: 22px; font-weight: 700; color: #011f23; margin-bottom: 8px;">Message Sent Successfully!</div>
+                                    <div style="font-size: 14px; color: #586566; max-width: 380px; margin: 0 auto 20px; line-height: 1.6;">
+                                        Thank you! We have received your inquiry and our team will get back to you shortly via WhatsApp / phone.
                                     </div>
-                                    <a href="tel:+91 92490 52513" class="button_primary w-inline-block" style="display: inline-flex;">
-                                        <div class="button_inner">
-                                            <div class="button-text_wrap">
-                                                <div class="button_text">Call Clinic Directly (+91 92490 52513)</div>
-                                            </div>
-                                        </div>
+                                    <a href="tel:+919249052513" class="touch-submit_btn" style="display: inline-flex; text-decoration: none;">
+                                        <span>Call Clinic Directly (+91 92490 52513)</span>
                                     </a>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- GOOGLE MAP CARD (BELOW THE 2 COLUMNS) -->
+                        <div class="contact-map_card">
+                            <iframe
+                                title="Danth Vaidhya Dental Clinic Location Map"
+                                src="https://maps.google.com/maps?q=Danth%20Vaidhya%20Dental%20Clinic%2C%20Reliable%20Arcade%2C%20Amalanagar%2C%20Thrissur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="400"
+                                style="border:0; display: block;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
                         </div>
                     </div>
                 </section>
@@ -598,7 +721,7 @@
                                 </div>
                                 <div>Modern Comfort</div>
                             </div>
-                            <h2 text-split="" class="heading-custom-h3" style="margin-top: 14px;">
+                            <h2 class="heading-custom-h3" style="margin-top: 14px;">
                                 A Calm, Welcoming Atmosphere <span class="text-highlighted">Engineered for Comfort</span>
                             </h2>
                             <p class="body-text-18px" style="margin-top: 12px; color: #586566;">
@@ -676,7 +799,6 @@
                       </div>
                       <div class="margin-bottom margin-16px">
                         <h2
-                          text-split=""
                           
                         >
                           <span class="text-highlighted">Questions </span>
@@ -951,7 +1073,7 @@
                                             </div>
                                         </div>
                                         <div class="margin-bottom margin-16px">
-                                            <h2 text-split="" class="cta_heading" style="color: #ffffff;">Experience World-Class Dentistry Built <span class="text-highlighted">Around You</span></h2>
+                                            <h2 class="cta_heading" style="color: #ffffff;">Experience World-Class Dentistry Built <span class="text-highlighted">Around You</span></h2>
                                         </div>
                                         <div class="margin-bottom margin-32px">
                                             <p class="cta_para" style="color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto;">Join thousands of smiling families who trust Danth Vaidhya Dental Clinic for gentle, top-tier oral health care.</p>
@@ -1288,142 +1410,7 @@
         <script src="assets/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script>
         <script src="assets/js/webflow.schunk.5e71080783712679.js" type="text/javascript"></script>
         <script src="assets/js/webflow.c9187143.3b5f57f78ed8e3cc.js" type="text/javascript"></script>
-    <!-- GSAP & SPLITTEXT LETTER-BY-LETTER TITLE ANIMATION ENGINE -->
-    <script>
-      /* ========== GSAP PLUGINS REGISTRATION ========== */
-      if (window.gsap) {
-        if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-        if (typeof window.SplitText === "function") gsap.registerPlugin(SplitText);
-      }
 
-      /* ========== LETTER-BY-LETTER TITLE ANIMATIONS ========== */
-      function initTitleAnimations() {
-        if (!window.gsap) return;
-        var hasST = !!window.ScrollTrigger;
-        var hasSplit = typeof window.SplitText === "function";
-
-        // 1. Hero H1 Titles: Letter-by-letter reveal on page load
-        var heroTitles = document.querySelectorAll(
-          ".hero-text-split, [hero-text-split], .contact-hero_title"
-        );
-
-        heroTitles.forEach(function (h1) {
-          h1.style.opacity = "1";
-          h1.style.transform = "none";
-
-          if (hasSplit) {
-            try {
-              var split = new SplitText(h1, {
-                type: "words,chars",
-                wordsClass: "split-word",
-                charsClass: "split-char"
-              });
-
-              gsap.fromTo(
-                split.chars,
-                { opacity: 0, y: "115%" },
-                {
-                  opacity: 1,
-                  y: "0%",
-                  duration: 0.65,
-                  stagger: 0.018,
-                  ease: "power2.out",
-                  delay: 0.2,
-                  clearProps: "transform,opacity"
-                }
-              );
-              return;
-            } catch (err) {
-              console.warn("SplitText fallback on hero title:", err);
-            }
-          }
-
-          // Fallback animation if SplitText is disabled
-          gsap.fromTo(
-            h1,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.9, ease: "power2.out", delay: 0.15, clearProps: "all" }
-          );
-        });
-
-        // 2. Section H2 & Major Headings: Letter-by-letter reveal on scroll for every section
-        var sectionTitles = document.querySelectorAll(
-          "[text-split], .section_story h2, .section_service h2, .section_value h2, .section_faq h2, .section_cta h2, .section_facilities h2, .heading-custom-h3, .cta_heading"
-        );
-
-        sectionTitles.forEach(function (heading) {
-          if (
-            heading.closest(".hero-text-split") ||
-            heading.closest(".home-hero_content") ||
-            heading.classList.contains("our-info_title") ||
-            heading.classList.contains("contact-card_title")
-          ) {
-            return;
-          }
-
-          // Clear any conflicting inline styles from template
-          heading.style.opacity = "1";
-          heading.style.transform = "none";
-
-          if (hasSplit) {
-            try {
-              var split = new SplitText(heading, {
-                type: "words,chars",
-                wordsClass: "split-word",
-                charsClass: "split-char"
-              });
-
-              gsap.fromTo(
-                split.chars,
-                { opacity: 0, y: "115%" },
-                {
-                  opacity: 1,
-                  y: "0%",
-                  duration: 0.65,
-                  stagger: 0.018,
-                  ease: "power2.out",
-                  scrollTrigger: hasST
-                    ? { trigger: heading, start: "top 85%", once: true }
-                    : undefined,
-                  clearProps: "transform,opacity"
-                }
-              );
-              return;
-            } catch (err) {
-              console.warn("SplitText fallback on section heading:", err);
-            }
-          }
-
-          // Fallback animation
-          gsap.fromTo(
-            heading,
-            { opacity: 0, y: 25 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: hasST
-                ? { trigger: heading, start: "top 85%", once: true }
-                : undefined,
-              clearProps: "all"
-            }
-          );
-        });
-
-        if (hasST) {
-          window.addEventListener("load", function () {
-            ScrollTrigger.refresh();
-          });
-          setTimeout(function () {
-            ScrollTrigger.refresh();
-          }, 350);
-        }
-      }
-
-      if (document.readyState !== "loading") setTimeout(initTitleAnimations, 50);
-      else document.addEventListener("DOMContentLoaded", function () { setTimeout(initTitleAnimations, 50); });
-    </script>
 
         <!-- FORM SUBMISSION & WHATSAPP REDIRECT -->
         <script>
@@ -1432,32 +1419,29 @@
                 var f = e.target;
                 var name = (f.querySelector('input[name="name"]').value || '').trim();
                 var phone = (f.querySelector('input[name="phone"]').value || '').trim();
-                var email = (f.querySelector('input[name="email"]').value || '').trim();
-                var service = (f.querySelector('select[name="service"]').value || 'General Consultation');
-                var time = (f.querySelector('input[name="time"]').value || '').trim();
-                var notes = (f.querySelector('textarea[name="notes"]').value || '').trim();
+                var email = (f.querySelector('input[name="email"]') ? f.querySelector('input[name="email"]').value : '').trim();
+                var subject = (f.querySelector('input[name="subject"]') ? f.querySelector('input[name="subject"]').value : '').trim();
+                var comments = (f.querySelector('textarea[name="comments"]') ? f.querySelector('textarea[name="comments"]').value : (f.querySelector('textarea[name="notes"]') ? f.querySelector('textarea[name="notes"]').value : '')).trim();
 
                 if (!name || !phone) return false;
 
-                var text = "Hi Danth Vaidhya Dental Clinic, I would like to schedule an appointment.\n"
-                    + "*Name:* " + name + "\n"
-                    + "*Phone:* " + phone + "\n"
-                    + "*Service:* " + service + "\n";
-                if (time) text += "*Preferred Time:* " + time + "\n";
-                if (email) text += "*Email:* " + email + "\n";
-                if (notes) text += "*Notes:* " + notes;
+                var text = "Hi Danth Vaidhya Dental Clinic, I am reaching out through the website contact form:%0A%0A" +
+                    "*Name:* " + encodeURIComponent(name) + "%0A" +
+                    "*Phone:* " + encodeURIComponent(phone) +
+                    (email ? "%0A*Email:* " + encodeURIComponent(email) : "") +
+                    (subject ? "%0A*Subject:* " + encodeURIComponent(subject) : "") +
+                    (comments ? "%0A*Comments:* " + encodeURIComponent(comments) : "");
 
-                var encoded = encodeURIComponent(text);
                 try {
-                    window.open("https://wa.me/919249052513?text=" + encoded, "_blank");
-                } catch(_) {}
+                    window.open("https://wa.me/919249052513?text=" + text, "_blank");
+                } catch (_) {}
 
-                f.style.display = 'none';
-                var head = f.closest('.contact-form_card').querySelector('.lead-form_head');
-                if (head) head.style.display = 'none';
-                var ok = f.closest('.contact-form_card').querySelector('.contact-success_state');
-                if (ok) ok.style.display = 'block';
-
+                var card = f.closest('.touch-form_card') || f.closest('.contact-form_card');
+                if (card) {
+                    f.style.display = 'none';
+                    var ok = card.querySelector('.contact-success_state');
+                    if (ok) ok.style.display = 'block';
+                }
                 return false;
             }
         </script>
@@ -1469,7 +1453,7 @@
                     if (!window.gsap) return;
                     var hasST = !!window.ScrollTrigger;
                     if (hasST) gsap.registerPlugin(ScrollTrigger);
-                    var els = gsap.utils.toArray('.contact-card, .facility-card, .faq-card, .contact-form_card').filter(function (el) {
+                    var els = gsap.utils.toArray('.facility-card, .faq-card, .touch-info_col, .touch-form_card, .contact-map_card').filter(function (el) {
                         return el.tagName !== 'H1' && el.tagName !== 'H2' && el.tagName !== 'H3';
                     });
                     els.forEach(function (el) {
@@ -1507,5 +1491,125 @@
           document.querySelectorAll('img').forEach(bind);
         })();
         </script>
-    </body>
+    
+    <!-- SPLIT TEXT LETTER-BY-LETTER REVEAL FOR ALL H1 & H2 -->
+    <script>
+      (function () {
+        function initTitleLetterReveal() {
+          if (!window.gsap) return;
+          var hasST = !!window.ScrollTrigger;
+          var hasSplit = typeof window.SplitText === "function";
+          if (hasST) gsap.registerPlugin(ScrollTrigger);
+          if (hasSplit) gsap.registerPlugin(SplitText);
+
+          var headings = document.querySelectorAll("h1, h2");
+
+          headings.forEach(function (heading) {
+            if (heading.dataset.splitDone) return;
+            if (
+              heading.closest(".navbar_wrap") ||
+              heading.closest(".w-nav") ||
+              heading.closest(".w-dropdown-list")
+            ) {
+              return;
+            }
+
+            heading.dataset.splitDone = "1";
+
+            if (hasSplit) {
+              try {
+                var split = new SplitText(heading, {
+                  type: "words,chars",
+                  wordsClass: "split-word",
+                  charsClass: "split-char",
+                  tag: "span"
+                });
+
+                var rect = heading.getBoundingClientRect();
+                var windowH = window.innerHeight || document.documentElement.clientHeight;
+                var isInInitialView = rect.top < windowH * 0.9 && rect.bottom > 0;
+
+                if (isInInitialView) {
+                  gsap.fromTo(
+                    split.chars,
+                    { y: "115%", opacity: 0 },
+                    {
+                      y: "0%",
+                      opacity: 1,
+                      duration: 0.7,
+                      stagger: 0.018,
+                      ease: "power2.out",
+                      delay: 0.15,
+                      clearProps: "transform,opacity"
+                    }
+                  );
+                } else {
+                  gsap.fromTo(
+                    split.chars,
+                    { y: "115%", opacity: 0 },
+                    {
+                      y: "0%",
+                      opacity: 1,
+                      duration: 0.65,
+                      stagger: 0.018,
+                      ease: "power2.out",
+                      scrollTrigger: hasST
+                        ? {
+                            trigger: heading,
+                            start: "top 88%",
+                            once: true
+                          }
+                        : undefined,
+                      clearProps: "transform,opacity"
+                    }
+                  );
+                }
+                return;
+              } catch (err) {
+                console.warn("SplitText error on heading:", err);
+              }
+            }
+
+            // Fallback if SplitText is not available
+            var rect = heading.getBoundingClientRect();
+            var windowH = window.innerHeight || document.documentElement.clientHeight;
+            var isInInitialView = rect.top < windowH * 0.9 && rect.bottom > 0;
+            if (isInInitialView) {
+              gsap.fromTo(heading, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.15, clearProps: "all" });
+            } else {
+              gsap.fromTo(heading, { y: 30, opacity: 0 }, {
+                y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
+                scrollTrigger: hasST ? { trigger: heading, start: "top 88%", once: true } : undefined,
+                clearProps: "all"
+              });
+            }
+          });
+
+          if (hasST) {
+            setTimeout(function () {
+              ScrollTrigger.refresh();
+            }, 200);
+          }
+        }
+
+        var didSplitInit = false;
+        function safeInitTitleLetterReveal() {
+          if (didSplitInit) return;
+          didSplitInit = true;
+          initTitleLetterReveal();
+        }
+
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(safeInitTitleLetterReveal);
+        }
+        if (document.readyState !== "loading") {
+          setTimeout(safeInitTitleLetterReveal, 100);
+        } else {
+          document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(safeInitTitleLetterReveal, 100);
+          });
+        }
+      })();
+    </script>
+  </body>
 </html>

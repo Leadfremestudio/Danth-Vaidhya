@@ -3611,7 +3611,13 @@ figure {
 
 .footer_brand {
   width: var(--_max-width---max-width--100);
-  max-width: 140px;
+  max-width: 195px;
+}
+
+.brand_logo {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .footer-contact_wrap {
@@ -8200,20 +8206,18 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
 .team_image,.blog-item_image,.our-story_image,.about-hero_image,.home-value_image{filter:none !important;-webkit-filter:none !important;}
 
 /* ===== Title SplitText Letter-by-Letter Animation Styles ===== */
-.split-line {
-  overflow: hidden !important;
-  display: block;
-  padding-bottom: 0.08em;
-}
 .split-word {
   display: inline-block !important;
+  position: relative !important;
   overflow: hidden !important;
   vertical-align: top !important;
-  padding-bottom: 0.06em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
   white-space: nowrap !important;
 }
 .split-char {
   display: inline-block !important;
+  position: relative !important;
   will-change: transform, opacity;
 }
 .text-highlighted,
@@ -8306,4 +8310,12 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
     width: 40px;
     height: 40px;
   }
+}
+
+
+/* Ensure all headings and section titles remain permanently visible */
+h1, h2, h3, h4, h5, h6,
+.section-title, .heading, .cta_heading {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
