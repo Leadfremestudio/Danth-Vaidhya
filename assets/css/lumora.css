@@ -9065,18 +9065,186 @@ figure {
   }
 }
 
-/* ===== Hero lead/callback form ===== */
-.lead-form_card{margin-top:24px;max-width:430px;background:#fff;border-radius:20px;padding:24px 24px 20px;box-shadow:0 28px 70px rgba(2,47,52,.30);}
-.lead-form_title{font-family:var(--font,'Sora',sans-serif);font-size:21px;font-weight:600;color:var(--primitive-color--primary-900,#011f23);letter-spacing:-.4px;}
-.lead-form_sub{font-size:14px;color:#5d6c7b;margin-top:3px;}
-.lead-form{display:flex;flex-direction:column;gap:11px;margin-top:16px;}
-.lead-form_input{height:50px;border:1px solid #e4e8ea;border-radius:12px;padding:0 16px;font-family:inherit;font-size:15px;color:#011f23;outline:none;background:#fafcfc;transition:border-color .2s,background .2s;}
-.lead-form_input::placeholder{color:#9aa6ad;}
-.lead-form_input:focus{border-color:var(--primitive-color--primary-500,#24a3b1);background:#fff;}
-.lead-form_btn{height:52px;border:none;border-radius:999px;background:var(--primitive-color--primary-900,#011f23);color:#fff;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:transform .15s ease,background .2s ease;}
-.lead-form_btn:hover{background:var(--primitive-color--primary-500,#24a3b1);transform:translateY(-1px);}
-.lead-form_note{font-size:12px;color:#9aa6ad;text-align:center;margin-top:2px;}
-@media (max-width:991px){.lead-form_card{max-width:100%;}}
+/* ===== Hero 2-column Grid, Doctor Badge & Lead Form ===== */
+.home-hero_grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  margin-bottom: 130px;
+  position: relative;
+  z-index: 3;
+}
+
+.home-hero_content {
+  flex: 1 1 58%;
+  max-width: 630px;
+  margin-bottom: 0 !important;
+}
+
+.home-hero_form-col {
+  flex: 0 0 380px;
+  max-width: 390px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lead-form_card {
+  margin-top: 0;
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 30px 28px 26px;
+  box-shadow: 0 24px 60px rgba(0, 20, 24, 0.32);
+}
+
+.lead-form_title {
+  font-family: var(--font, 'Sora', sans-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #011f23;
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+}
+
+.lead-form_sub {
+  font-size: 14px;
+  color: #647482;
+  margin-top: 4px;
+}
+
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.lead-form_input {
+  height: 50px;
+  border: 1px solid #e2e8ea;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #011f23;
+  outline: none;
+  background: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lead-form_input::placeholder {
+  color: #9aa6ad;
+}
+
+.lead-form_input:focus {
+  border-color: #24a3b1;
+  box-shadow: 0 0 0 3px rgba(36, 163, 177, 0.15);
+}
+
+.lead-form_btn {
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: #011f23;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lead-form_btn:hover {
+  background: #0c8290;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(1, 31, 35, 0.25);
+}
+
+.hero-doctor_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 8px 24px 8px 8px;
+  box-shadow: 0 12px 32px rgba(0, 20, 24, 0.18);
+  margin-top: 14px;
+}
+
+.hero-doctor_icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #011f23;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-doctor_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.25;
+}
+
+.hero-doctor_label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #0c8290;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.hero-doctor_name {
+  font-size: 14.5px;
+  color: #1a2a30;
+}
+
+.hero-doctor_name strong {
+  color: #011f23;
+  font-weight: 700;
+}
+
+.hero-doctor_sep {
+  color: #94a3a8;
+  margin: 0 4px;
+}
+
+.hero-doctor_role {
+  color: #556972;
+  font-weight: 500;
+}
+
+@media (max-width: 991px) {
+  .home-hero_grid {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    margin-bottom: 50px;
+  }
+  .home-hero_content {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .home-hero_form-col {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .home-hero_form-col .lead-form_card {
+    max-width: 100%;
+  }
+}
 
 /* ===== Closing CTA photo section + footer polish ===== */
 .section_cta{position:relative;background-image:linear-gradient(115deg, rgba(1,31,35,.93), rgba(1,31,35,.72)), url('../img/gen_about-hero-image.jpg');background-size:cover;background-position:center;}
@@ -9087,9 +9255,38 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
 .hero-carousel-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;}
 .hero-carousel-img.is-active{opacity:1;}
 
-/* ===== Hero: pull content up so the info strip is visible on load ===== */
+/* ===== Hero, Navbar & Our-Info: unified wide container width & padding on desktop ===== */
 .padding-home-hero{padding-top:104px!important;}
-@media(min-width:992px){.our-info_wrap{margin-top:-165px;}}
+@media(min-width:992px){
+  .our-info_wrap{margin-top:-40px;}
+
+  .navbar_wrap {
+    padding-left: clamp(48px, 5.5vw, 96px) !important;
+    padding-right: clamp(48px, 5.5vw, 96px) !important;
+  }
+  .navbar_container {
+    max-width: 1520px !important;
+    width: 100% !important;
+  }
+
+  .section_hero.is-home-hero .padding-home-hero {
+    padding-left: clamp(48px, 5.5vw, 96px) !important;
+    padding-right: clamp(48px, 5.5vw, 96px) !important;
+  }
+  .section_hero.is-home-hero .padding-home-hero > .container {
+    max-width: 1520px !important;
+    width: 100% !important;
+  }
+
+  .our-info_wrap .section-padding {
+    padding-left: clamp(48px, 5.5vw, 96px) !important;
+    padding-right: clamp(48px, 5.5vw, 96px) !important;
+  }
+  .our-info_wrap .container {
+    max-width: 1520px !important;
+    width: 100% !important;
+  }
+}
 @media(max-width:991px){.padding-home-hero{padding-top:120px!important;}.our-info_wrap{margin-top:24px;}}
 
 /* ===== Premium DARK footer (was bland cream) ===== */
