@@ -8187,6 +8187,8 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
 /* ===== Premium DARK footer (was bland cream) ===== */
 .section_footer{background:var(--primitive-color--primary-900,#011f23)!important;border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
 .section_footer, .section_footer .text-color-dark, .section_footer p, .section_footer div, .section_footer a{color:#cdd8da!important;}
+
+
 .section_footer h1,.section_footer h2,.section_footer h3,.section_footer h4,.section_footer .footer-menu_title{color:#ffffff!important;}
 .section_footer a:hover{color:#ffffff!important;}
 .section_footer .footer-bottom_right-divider,.section_footer [class*="divider"]{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.14)!important;}
@@ -8196,3 +8198,35 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
 
 /* Safety: reveal/portrait/blog images must never stay blurred (no leftover IX2 blur) */
 .team_image,.blog-item_image,.our-story_image,.about-hero_image,.home-value_image{filter:none !important;-webkit-filter:none !important;}
+
+/* ===== Title SplitText Letter-by-Letter Animation Styles ===== */
+.split-line {
+  overflow: hidden !important;
+  display: block;
+  padding-bottom: 0.08em;
+}
+.split-word {
+  display: inline-block !important;
+  overflow: hidden !important;
+  vertical-align: top !important;
+  padding-bottom: 0.06em;
+  white-space: nowrap !important;
+}
+.split-char {
+  display: inline-block !important;
+  will-change: transform, opacity;
+}
+.text-highlighted,
+.text-highlighted .split-word,
+.text-highlighted .split-char {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: #24a3b1 !important;
+  color: #24a3b1 !important;
+}
+
+.about-hero_header {
+  grid-template-columns: 1fr !important;
+}
