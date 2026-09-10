@@ -8201,6 +8201,9 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
 .section_footer .footer-external_link{color:var(--primitive-color--primary-500,#24a3b1)!important;}
 .section_footer .social_icon{color:#cdd8da!important;}
 .section_footer .button_primary .button_text,.section_footer .button_text{color:var(--primitive-color--primary-900,#011f23)!important;}
+.section_footer .button_primary:hover{background-color:var(--primitive-color--primary-500,#24a3b1)!important;border-color:var(--primitive-color--primary-500,#24a3b1)!important;}
+.section_footer .button_primary:hover .button_text{color:#ffffff!important;}
+.section_footer .button_primary:hover .button-icon_group{background-color:#ffffff!important;color:var(--primitive-color--primary-900,#011f23)!important;}
 
 /* Safety: reveal/portrait/blog images must never stay blurred (no leftover IX2 blur) */
 .team_image,.blog-item_image,.our-story_image,.about-hero_image,.home-value_image{filter:none !important;-webkit-filter:none !important;}
@@ -8318,4 +8321,234 @@ h1, h2, h3, h4, h5, h6,
 .section-title, .heading, .cta_heading {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+
+/* ===== CTA WhatsApp Button: on-brand, aligned, with signature Lumora arrow slide ===== */
+.button_primary.is-whatsapp-cta {
+  background-color: #25D366 !important;
+  border: 1px solid #25D366 !important;
+  color: #ffffff !important;
+}
+.button_primary.is-whatsapp-cta:hover {
+  background-color: #1eb956 !important;
+  border-color: #1eb956 !important;
+}
+.button_primary.is-whatsapp-cta .button_text {
+  color: #ffffff !important;
+}
+.button_primary.is-whatsapp-cta .button-icon_group {
+  background-color: #ffffff !important;
+  color: #25D366 !important;
+}
+
+
+/* ===== Mobile Responsive Navbar Menu & Contact Info ===== */
+@media screen and (min-width: 992px) {
+  .navbar-mobile_contact,
+  .navbar_link-chevron,
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  /* Prevent background page scrolling when mobile menu is open */
+  html.nav-is-open,
+  body.nav-is-open,
+  html:has(.w-nav-button.w--open),
+  body:has(.w-nav-button.w--open) {
+    overflow: hidden !important;
+    height: 100% !important;
+    overscroll-behavior: none !important;
+    touch-action: none !important;
+  }
+
+  /* Keep navbar pinned to top when drawer is open with signature green gradient strip */
+  .navbar_wrap:has(.w-nav-button.w--open),
+  .navbar_wrap.is-nav-open {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    background: linear-gradient(135deg, #011f23 0%, #023035 55%, #05454d 100%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22) !important;
+  }
+
+  /* Ensure logo is bright & clear on open navbar strip */
+  .navbar_wrap:has(.w-nav-button.w--open) .logo_image,
+  .navbar_wrap.is-nav-open .logo_image {
+    filter: brightness(1) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25)) !important;
+    display: block !important;
+  }
+
+  /* Close button ("X") transformation and crisp white visibility */
+  .navbar-toggler_bar_top,
+  .navbar-toggler_bar-middle,
+  .navbar_toggler-bar-bottom {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, background-color 0.2s ease !important;
+  }
+
+  .navbar-toggler-button.w--open .navbar-toggler_bar_top {
+    transform: translateY(8px) rotate(45deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  .navbar-toggler-button.w--open .navbar-toggler_bar-middle {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+  }
+
+  .navbar-toggler-button.w--open .navbar_toggler-bar-bottom {
+    transform: translateY(-8px) rotate(-45deg) !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Overlay container constraints */
+  .w-nav-overlay {
+    max-height: calc(100svh - 50px) !important;
+    z-index: 999 !important;
+  }
+
+  .navbar_menu.w-nav-menu {
+    background-color: #ffffff !important;
+    padding: 24px 20px 48px !important;
+    box-shadow: 0 20px 40px rgba(1, 31, 35, 0.14) !important;
+    border-bottom: 1px solid rgba(1, 31, 35, 0.08) !important;
+    max-height: calc(100svh - 60px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y !important;
+    overscroll-behavior: contain !important;
+    width: 100% !important;
+  }
+
+  .navbar_menu .navbar_link {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: var(--primitive-color--primary-900, #011f23) !important;
+    padding: 15px 4px !important;
+    width: 100% !important;
+    border-bottom: 1px solid rgba(1, 31, 35, 0.08) !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: left !important;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .navbar_menu .navbar_link:hover,
+  .navbar_menu .navbar_link.w--current {
+    color: var(--primitive-color--primary-500, #24a3b1) !important;
+    padding-left: 8px !important;
+  }
+
+  .navbar_link-chevron {
+    color: #9cb0b3 !important;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .navbar-mobile_contact {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-top: 24px !important;
+    gap: 16px !important;
+  }
+
+  .navbar-mobile_btn-wrap {
+    width: 100% !important;
+  }
+
+  .navbar-mobile_btn-wrap .button_primary {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .navbar-mobile_btn-wrap .button_inner {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .navbar-mobile_card {
+    background: #f4f8f8 !important;
+    border: 1px solid rgba(36, 163, 177, 0.2) !important;
+    border-radius: 16px !important;
+    padding: 18px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .navbar-mobile_card-title {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: var(--primitive-color--primary-500, #24a3b1) !important;
+    margin-bottom: 2px !important;
+  }
+
+  .navbar-mobile_item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    color: var(--primitive-color--primary-900, #011f23) !important;
+    transition: transform 0.15s ease;
+  }
+
+  .navbar-mobile_item:hover {
+    transform: translateX(3px);
+  }
+
+  .navbar-mobile_icon {
+    width: 36px !important;
+    height: 36px !important;
+    flex: none !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(36, 163, 177, 0.25) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--primitive-color--primary-500, #24a3b1) !important;
+    box-shadow: 0 2px 6px rgba(2, 47, 52, 0.05) !important;
+  }
+
+  .navbar-mobile_icon.is-whatsapp {
+    color: #25D366 !important;
+    border-color: rgba(37, 211, 102, 0.35) !important;
+  }
+
+  .navbar-mobile_info-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+
+  .navbar-mobile_label {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #6d7d7f !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .navbar-mobile_val {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--primitive-color--primary-900, #011f23) !important;
+    line-height: 1.4 !important;
+  }
+
+  .navbar-mobile_val.is-muted {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #4b595b !important;
+  }
 }
