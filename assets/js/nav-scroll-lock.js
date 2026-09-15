@@ -13,12 +13,33 @@
 
     var isLocked = false;
 
+    function onTouchMoveGuard(e) {
+      if (!isLocked) return;
+      var inMenu = e.target.closest('.navbar_menu, .w-nav-menu');
+      if (!inMenu) {
+        e.preventDefault();
+      }
+    }
+
+    function onWheelGuard(e) {
+      if (!isLocked) return;
+      var inMenu = e.target.closest('.navbar_menu, .w-nav-menu');
+      if (!inMenu) {
+        e.preventDefault();
+      }
+    }
+
     function lockScroll() {
       if (isLocked) return;
       isLocked = true;
       document.documentElement.classList.add('nav-is-open');
       document.body.classList.add('nav-is-open');
       if (navWrap) navWrap.classList.add('is-nav-open');
+      if (window.lenis && typeof window.lenis.stop === 'function') {
+        window.lenis.stop();
+      }
+      document.addEventListener('touchmove', onTouchMoveGuard, { passive: false });
+      document.addEventListener('wheel', onWheelGuard, { passive: false });
     }
 
     function unlockScroll() {
@@ -27,6 +48,11 @@
       document.documentElement.classList.remove('nav-is-open');
       document.body.classList.remove('nav-is-open');
       if (navWrap) navWrap.classList.remove('is-nav-open');
+      if (window.lenis && typeof window.lenis.start === 'function') {
+        window.lenis.start();
+      }
+      document.removeEventListener('touchmove', onTouchMoveGuard);
+      document.removeEventListener('wheel', onWheelGuard);
     }
 
     // Observe class/aria changes on .w-nav-button (Webflow toggles 'w--open')
@@ -56,34 +82,16 @@
       });
       menuObserver.observe(navMenu, {
         attributes: true,
-        attributeFilter: ['class', 'data-nav-menu-open', 'style']
+        attributeFilter: ['class', 'data-nav-menu-open']
       });
     }
-
-    // Touch event guard: cancel touchmove if not inside scrollable menu
-    document.addEventListener('touchmove', function (e) {
-      if (!isLocked) return;
-      var inMenu = e.target.closest('.navbar_menu, .w-nav-menu');
-      if (!inMenu) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    // Wheel event guard: cancel wheel if not inside scrollable menu
-    document.addEventListener('wheel', function (e) {
-      if (!isLocked) return;
-      var inMenu = e.target.closest('.navbar_menu, .w-nav-menu');
-      if (!inMenu) {
-        e.preventDefault();
-      }
-    }, { passive: false });
 
     // Unlock if window resized to desktop
     window.addEventListener('resize', function () {
       if (window.innerWidth >= 992 && isLocked) {
         unlockScroll();
       }
-    });
+    }, { passive: true });
   }
 
   if (document.readyState !== 'loading') {
