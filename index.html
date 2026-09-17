@@ -47,9 +47,15 @@
         .section_service {
           position: relative;
         }
+        .section_service .section-padding {
+          padding-left: clamp(24px, 4.5vw, 80px) !important;
+          padding-right: clamp(24px, 4.5vw, 80px) !important;
+        }
         .service_sticky-trigger {
           width: 100% !important;
           margin-top: 0 !important;
+          height: 320vh !important;
+          position: relative !important;
         }
         .service_sticky-camera {
           top: 80px !important;
@@ -68,16 +74,17 @@
         }
         .service_wrap {
           width: 100% !important;
-          container-type: inline-size !important;
           display: flex !important;
+          overflow: hidden !important;
         }
         .scroll_track {
           display: flex !important;
           width: auto !important;
+          will-change: transform !important;
         }
         .scroll_list {
           display: flex !important;
-          margin-right: -100cqw !important;
+          margin-right: 0 !important;
           width: auto !important;
         }
         .collection-list-wrapper {
@@ -87,13 +94,11 @@
         .service_list {
           display: flex !important;
           align-items: stretch !important;
-          grid-column-gap: var(
-            --_size-variables---element-spacing--8xl
-          ) !important;
+          grid-column-gap: 28px !important;
           width: auto !important;
         }
         .service_item-wrap {
-          width: 90cqw !important;
+          width: clamp(720px, 75vw, 1120px) !important;
           max-width: none !important;
           flex: none !important;
           height: auto !important;
@@ -155,6 +160,169 @@
         .service-item_showcase-inner {
           height: 100% !important;
           box-sizing: border-box !important;
+        }
+      }
+
+      /* Responsive Services Carousel (Embla on screens < 992px) */
+      @media screen and (max-width: 991px) {
+        .service_sticky-trigger {
+          height: auto !important;
+          position: relative !important;
+          margin-top: 16px !important;
+          width: 100% !important;
+        }
+        .service_sticky-camera {
+          position: static !important;
+          height: auto !important;
+          top: auto !important;
+          display: block !important;
+          width: 100% !important;
+        }
+        .scroll-mobile_trigger {
+          width: 100% !important;
+          height: auto !important;
+          position: relative !important;
+        }
+        .scroll-mobile_camera {
+          width: 100% !important;
+          height: auto !important;
+          position: static !important;
+        }
+        .service_wrap {
+          width: 100% !important;
+          overflow: hidden !important;
+          position: relative !important;
+          padding: 8px 0 !important;
+        }
+        .scroll_track {
+          width: 100% !important;
+          transform: none !important;
+          display: block !important;
+        }
+        .scroll_list {
+          width: 100% !important;
+          margin-right: 0 !important;
+          display: block !important;
+        }
+        .collection-list-wrapper {
+          width: 100% !important;
+          overflow: hidden !important;
+          cursor: grab;
+          display: block !important;
+          padding: 8px 0 !important;
+        }
+        .collection-list-wrapper:active {
+          cursor: grabbing;
+        }
+        .service_list {
+          display: flex !important;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: pan-y pinch-zoom;
+          margin-left: -16px !important;
+          grid-column-gap: 0 !important;
+          grid-row-gap: 0 !important;
+          width: auto !important;
+        }
+        .service_item-wrap {
+          flex: 0 0 85% !important;
+          min-width: 0 !important;
+          height: auto !important;
+          padding-left: 16px !important;
+          box-sizing: border-box !important;
+          display: flex !important;
+        }
+        .service_item {
+          width: 100% !important;
+          height: 100% !important;
+          min-height: auto !important;
+          padding: clamp(20px, 4vw, 32px) !important;
+          grid-template-columns: 1fr !important;
+          grid-row-gap: 20px !important;
+          border-radius: 20px !important;
+          box-sizing: border-box !important;
+        }
+        .service-item_showcase {
+          min-height: 240px !important;
+          max-height: 300px !important;
+          width: 100% !important;
+          border-radius: 16px !important;
+        }
+        .service-item_image {
+          min-height: 240px !important;
+          max-height: 300px !important;
+          border-radius: 16px !important;
+        }
+        .service-slider_nav {
+          display: block !important;
+          position: static !important;
+          margin: 0 !important;
+        }
+        .service-slider_arrow {
+          position: absolute !important;
+          top: 50% !important;
+          transform: translateY(-50%) !important;
+          z-index: 25 !important;
+          width: 44px !important;
+          height: 44px !important;
+          border-radius: 50% !important;
+          border: 1px solid rgba(1, 31, 35, 0.15) !important;
+          background-color: rgba(255, 255, 255, 0.95) !important;
+          color: var(--primitive-color--primary-700, #14707d) !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          cursor: pointer !important;
+          box-shadow: 0 4px 14px rgba(1, 31, 35, 0.15) !important;
+          transition: background-color 0.2s, color 0.2s, transform 0.2s !important;
+        }
+        .service-slider_arrow.is-prev {
+          left: 8px !important;
+        }
+        .service-slider_arrow.is-next {
+          right: 8px !important;
+        }
+        .service-slider_arrow:active {
+          transform: translateY(-50%) scale(0.92) !important;
+          background-color: var(--primitive-color--primary-500, #24a3b1) !important;
+          color: #ffffff !important;
+        }
+      }
+
+      @media screen and (max-width: 479px) {
+        .service-slider_arrow {
+          width: 38px !important;
+          height: 38px !important;
+        }
+        .service-slider_arrow.is-prev {
+          left: 4px !important;
+        }
+        .service-slider_arrow.is-next {
+          right: 4px !important;
+        }
+        .service_item-wrap {
+          flex: 0 0 92% !important;
+          padding-left: 12px !important;
+        }
+        .service_list {
+          margin-left: -12px !important;
+        }
+        .service_item {
+          padding: 18px !important;
+        }
+        .service-item_showcase {
+          min-height: 200px !important;
+          max-height: 240px !important;
+        }
+        .service-item_image {
+          min-height: 200px !important;
+          max-height: 240px !important;
+        }
+      }
+
+      @media screen and (min-width: 992px) {
+        .service-slider_nav {
+          display: none !important;
         }
       }
     </style>
@@ -1191,6 +1359,7 @@
                   </div>
                 </div>
               </div>
+              </div>
               <div class="service_sticky-trigger">
                 <div class="service_sticky-camera">
                   <div class="scroll-mobile_trigger">
@@ -1926,10 +2095,51 @@
                           </div>
                         </div>
                       </div>
+                      <div class="service-slider_nav hide-desktop">
+                        <button
+                          type="button"
+                          class="service-slider_arrow is-prev"
+                          aria-label="Previous Service"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          class="service-slider_arrow is-next"
+                          aria-label="Next Service"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </section>
@@ -3228,6 +3438,124 @@
         } else {
           document.addEventListener("DOMContentLoaded", initStoryCarousel);
         }
+      })();
+    </script>
+    <!-- SERVICE SECTION SCRIPT: GSAP PINNED SCROLL ON DESKTOP (>=992px), EMBLA CAROUSEL ON RESPONSIVE (<992px) -->
+    <script>
+      (function () {
+        var emblaServiceApi = null;
+
+        function setupServiceSection() {
+          if (typeof gsap === "undefined") return;
+          if (typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
+
+          var wrap = document.querySelector(".service_wrap");
+          var track = document.querySelector(".scroll_track");
+          var list = document.querySelector(".service_list");
+          var trigger = document.querySelector(".service_sticky-trigger");
+          var emblaViewport = document.querySelector(".service_wrap .collection-list-wrapper");
+          var prevBtn = document.querySelector(".service-slider_arrow.is-prev");
+          var nextBtn = document.querySelector(".service-slider_arrow.is-next");
+
+          if (!wrap || !track || !list || !trigger || !emblaViewport) return;
+
+          var mm = gsap.matchMedia();
+
+          // 1. DESKTOP (>=992px): GSAP Scroll-driven horizontal pinned cards
+          mm.add("(min-width: 992px)", function () {
+            if (emblaServiceApi) {
+              emblaServiceApi.destroy();
+              emblaServiceApi = null;
+            }
+
+            function getMaxScroll() {
+              return Math.max(0, list.scrollWidth - wrap.clientWidth);
+            }
+
+            gsap.set(track, { x: 0, force3D: true });
+
+            var anim = gsap.to(track, {
+              x: function () {
+                return -getMaxScroll();
+              },
+              ease: "none",
+              scrollTrigger: {
+                trigger: trigger,
+                start: "top 80px",
+                end: "bottom bottom",
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+              },
+            });
+
+            return function () {
+              if (anim && anim.scrollTrigger) anim.scrollTrigger.kill();
+              if (anim) anim.kill();
+              gsap.set(track, { clearProps: "transform" });
+            };
+          });
+
+          // 2. RESPONSIVE (<992px): Embla Carousel (Zero lag, Swipe / Drag / Autoplay)
+          mm.add("(max-width: 991px)", function () {
+            gsap.set(track, { clearProps: "all" });
+
+            if (typeof EmblaCarousel !== "undefined") {
+              var plugins = [];
+              if (typeof EmblaCarouselAutoplay !== "undefined") {
+                plugins.push(
+                  EmblaCarouselAutoplay({
+                    delay: 4000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                  })
+                );
+              }
+
+              emblaServiceApi = EmblaCarousel(
+                emblaViewport,
+                {
+                  loop: true,
+                  align: "center",
+                  skipSnaps: false,
+                  dragFree: false,
+                },
+                plugins
+              );
+
+              if (prevBtn) {
+                prevBtn.onclick = function (e) {
+                  e.preventDefault();
+                  if (emblaServiceApi) emblaServiceApi.scrollPrev();
+                };
+              }
+              if (nextBtn) {
+                nextBtn.onclick = function (e) {
+                  e.preventDefault();
+                  if (emblaServiceApi) emblaServiceApi.scrollNext();
+                };
+              }
+            }
+
+            return function () {
+              if (emblaServiceApi) {
+                emblaServiceApi.destroy();
+                emblaServiceApi = null;
+              }
+            };
+          });
+        }
+
+        if (document.readyState !== "loading") {
+          setTimeout(setupServiceSection, 100);
+        } else {
+          document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(setupServiceSection, 100);
+          });
+        }
+
+        window.addEventListener("load", function () {
+          if (window.ScrollTrigger) ScrollTrigger.refresh();
+        });
       })();
     </script>
     <script src="assets/js/nav-scroll-lock.js"></script>
