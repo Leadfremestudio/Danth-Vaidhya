@@ -3666,12 +3666,12 @@ figure {
 
 .footer_menu {
   width: var(--_max-width---max-width--100);
-  grid-column-gap: var(--_size-variables---element-spacing--xl);
+  grid-column-gap: var(--_size-variables---element-spacing--3xl);
   grid-row-gap: var(--_size-variables---element-spacing--xl);
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto 1fr;
   grid-auto-columns: 1fr;
-  max-width: 547px;
+  max-width: 440px;
   display: grid;
 }
 
@@ -6020,22 +6020,75 @@ figure {
   top: 5vh;
 }
 
+/* ===== Embla Story Carousel (Zero Lag, 60/120fps Smooth Physics) ===== */
 .story_slider {
-  width: var(--_max-width---max-width--100);
-  background-color: var(--primitive-color--transparent);
-  height: auto;
+  position: relative;
+  width: 100%;
 }
 
 .story-slider_mask {
-  width: 410px;
-  height: var(--_max-width---max-width--100);
-  overflow: visible;
+  width: 100% !important;
+  overflow: hidden !important;
+  cursor: grab;
+  padding: 8px 0;
+}
+
+.story-slider_mask:active {
+  cursor: grabbing;
+}
+
+.story-slider_container {
+  display: flex !important;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y pinch-zoom;
+  margin-left: -24px;
 }
 
 .story-slider_slide {
-  width: var(--_max-width---max-width--100);
-  height: var(--_max-width---max-width--100);
-  margin-right: var(--_size-variables---element-spacing--2xl);
+  flex: 0 0 410px !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding-left: 24px !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 991px) {
+  .story-slider_slide {
+    flex: 0 0 360px !important;
+    padding-left: 18px !important;
+  }
+  .story-slider_container {
+    margin-left: -18px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .story-slider_slide {
+    flex: 0 0 320px !important;
+    padding-left: 16px !important;
+  }
+  .story-slider_container {
+    margin-left: -16px !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .story-slider_slide {
+    flex: 0 0 86% !important;
+    padding-left: 12px !important;
+  }
+  .story-slider_container {
+    margin-left: -12px !important;
+  }
+}
+
+.our-story_item {
+  width: 100% !important;
+  height: 480px !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
 }
 
 .slide-nav {
@@ -6043,15 +6096,60 @@ figure {
 }
 
 .story-slider_arrow-wrap {
-  border: 1px solid var(--color-shadow--dark-80);
-  border-radius: var(--_size-variables---border-radius--circle-large);
-  background-color: var(--primitive-color--neutral-0);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border: 1px solid rgba(1, 31, 35, 0.15);
+  border-radius: 50%;
+  background-color: #ffffff;
   width: 48px;
   height: 48px;
-  color: var(--primitive-color--primary-700);
+  color: var(--primitive-color--primary-700, #14707d);
   justify-content: center;
   align-items: center;
   display: flex;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(1, 31, 35, 0.12);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.story-slider_arrow-wrap.is-prev {
+  left: -24px;
+}
+
+.story-slider_arrow-wrap.is-next {
+  right: -24px;
+}
+
+@media (max-width: 1200px) {
+  .story-slider_arrow-wrap.is-prev {
+    left: 8px;
+  }
+  .story-slider_arrow-wrap.is-next {
+    right: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .story-slider_arrow-wrap {
+    width: 40px;
+    height: 40px;
+  }
+  .story-slider_arrow-wrap.is-prev {
+    left: 4px;
+  }
+  .story-slider_arrow-wrap.is-next {
+    right: 4px;
+  }
+}
+
+.story-slider_arrow-wrap:hover {
+  background-color: var(--primitive-color--primary-500, #24a3b1);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 10px 24px rgba(1, 31, 35, 0.2);
 }
 
 .story-slider_arrow-wrap.is-hide {
@@ -8118,6 +8216,84 @@ figure {
 .hero-doctor_role {
   color: #556972;
   font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .hero-doctor_badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+    border-radius: 18px;
+    padding: 10px 16px 10px 10px;
+    box-sizing: border-box;
+  }
+  .hero-doctor_icon {
+    width: 42px;
+    height: 42px;
+  }
+  .hero-doctor_icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .hero-doctor_info {
+    min-width: 0;
+    flex: 1;
+  }
+  .hero-doctor_label {
+    font-size: 10.5px;
+    margin-bottom: 2px;
+  }
+  .hero-doctor_name {
+    font-size: 13.5px;
+    line-height: 1.35;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 6px;
+    row-gap: 2px;
+  }
+  .hero-doctor_sep {
+    display: none;
+  }
+  .hero-doctor_role {
+    font-size: 12px;
+    color: #556972;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-doctor_badge {
+    width: 100%;
+    border-radius: 16px;
+    padding: 10px 14px 10px 10px;
+    gap: 10px;
+  }
+  .hero-doctor_icon {
+    width: 38px;
+    height: 38px;
+  }
+  .hero-doctor_icon svg {
+    width: 19px;
+    height: 19px;
+  }
+  .hero-doctor_label {
+    font-size: 10px;
+  }
+  .hero-doctor_name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+  }
+  .hero-doctor_name strong {
+    font-size: 13.5px;
+    line-height: 1.25;
+  }
+  .hero-doctor_role {
+    font-size: 11.5px;
+    line-height: 1.25;
+  }
 }@media (max-width: 991px) {
 
   .home-hero_grid {
@@ -8180,6 +8356,15 @@ footer{border-top:3px solid var(--primitive-color--primary-500,#24a3b1);}
     padding-right: clamp(48px, 5.5vw, 96px) !important;
   }
   .our-info_wrap .container {
+    max-width: 1520px !important;
+    width: 100% !important;
+  }
+
+  .section_story .section-padding {
+    padding-left: clamp(48px, 5.5vw, 96px) !important;
+    padding-right: clamp(48px, 5.5vw, 96px) !important;
+  }
+  .section_story .container {
     max-width: 1520px !important;
     width: 100% !important;
   }
@@ -8550,6 +8735,16 @@ h1, h2, h3, h4, h5, h6,
     font-size: 13px !important;
     font-weight: 400 !important;
     color: #4b595b !important;
+  }
+
+  /* Responsive only: left-align footer contact phone number */
+  .footer-contact_wrap {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .footer-contact_link {
+    text-align: left !important;
   }
 }
 
