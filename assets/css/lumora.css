@@ -8663,10 +8663,12 @@ h1, h2, h3, h4, h5, h6,
     background: #f4f8f8 !important;
     border: 1px solid rgba(36, 163, 177, 0.2) !important;
     border-radius: 16px !important;
-    padding: 18px 16px !important;
+    padding: 18px 18px !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 14px !important;
+    align-items: stretch !important;
+    text-align: left !important;
+    gap: 16px !important;
   }
 
   .navbar-mobile_card-title {
@@ -8676,13 +8678,20 @@ h1, h2, h3, h4, h5, h6,
     text-transform: uppercase !important;
     color: var(--primitive-color--primary-500, #24a3b1) !important;
     margin-bottom: 2px !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+    display: block !important;
   }
 
   .navbar-mobile_item {
     display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
-    gap: 12px !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
     text-decoration: none !important;
+    text-align: left !important;
+    width: 100% !important;
     color: var(--primitive-color--primary-900, #011f23) !important;
     transition: transform 0.15s ease;
   }
@@ -8692,9 +8701,9 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .navbar-mobile_icon {
-    width: 36px !important;
-    height: 36px !important;
-    flex: none !important;
+    width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px !important;
     border-radius: 50% !important;
     background: #ffffff !important;
     border: 1px solid rgba(36, 163, 177, 0.25) !important;
@@ -8711,8 +8720,13 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .navbar-mobile_info-text {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
     display: flex !important;
     flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    text-align: left !important;
     gap: 2px !important;
   }
 
@@ -8722,6 +8736,11 @@ h1, h2, h3, h4, h5, h6,
     color: #6d7d7f !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   .navbar-mobile_val {
@@ -8729,12 +8748,20 @@ h1, h2, h3, h4, h5, h6,
     font-weight: 600 !important;
     color: var(--primitive-color--primary-900, #011f23) !important;
     line-height: 1.4 !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   .navbar-mobile_val.is-muted {
     font-size: 13px !important;
     font-weight: 400 !important;
     color: #4b595b !important;
+    text-align: left !important;
+    align-self: flex-start !important;
+    width: 100% !important;
   }
 
   /* Responsive only: left-align footer contact phone number */
