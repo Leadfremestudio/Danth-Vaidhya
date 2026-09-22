@@ -272,7 +272,7 @@
                       </div>
                       <div class="margin-bottom margin-32px">
                         <p class="about-hero_para">
-                          At Danth Vaidhya Dental Clinic &amp; Implant Centre, we combine compassionate patient care with advanced clinical technology under the guidance of Dr. Aswin (Lead Prosthodontist &amp; Implant Specialist). Located in Amalanagar, Thrissur, our mission is to deliver lasting oral health and confident smiles in a gentle, stress-free environment.
+                          At Danth Vaidhya Dental Clinic &amp; Implant Centre, we combine compassionate patient care with advanced clinical technology under the guidance of Dr. Aswin Joseph N (Cheif Dental Surgeon). Located in Amalanagar, Thrissur, our mission is to deliver lasting oral health and confident smiles in a gentle, stress-free environment.
                         </p>
                       </div>
                       <div class="button-container">
@@ -714,30 +714,60 @@
           requestAnimationFrame(raf);
         }
 
+        function isLinkToCurrentPage(href) {
+          if (!href || href === "#" || href === "#top" || href.startsWith("#!")) return true;
+          try {
+            var currentUrl = new URL(window.location.href);
+            var targetUrl = new URL(href, window.location.href);
+            var curPath = currentUrl.pathname.replace(/\/$/, "");
+            var tgtPath = targetUrl.pathname.replace(/\/$/, "");
+            if (curPath.endsWith("/index.html") || curPath === "") curPath = curPath.replace(/(^|\/)index\.html$/, "");
+            if (tgtPath.endsWith("/index.html") || tgtPath === "") tgtPath = tgtPath.replace(/(^|\/)index\.html$/, "");
+            return currentUrl.origin === targetUrl.origin && curPath === tgtPath;
+          } catch (e) {
+            return false;
+          }
+        }
+
         document.addEventListener("click", function (e) {
-          var target = e.target.closest('a[href*="#"]');
+          var target = e.target.closest('a[href]');
           if (!target) return;
           var href = target.getAttribute("href");
-          if (!href || href === "#" || href.startsWith("#!")) return;
+          if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("javascript:") || target.target === "_blank") return;
 
-          var hashIndex = href.indexOf("#");
-          var path = href.substring(0, hashIndex);
-          var hash = href.substring(hashIndex);
+          if (isLinkToCurrentPage(href)) {
+            var hashIndex = href.indexOf("#");
+            var hash = hashIndex !== -1 ? href.substring(hashIndex) : "";
 
-          var currentPath = window.location.pathname;
-          var isCurrentPage = !path || path === "" || currentPath.endsWith(path) || (currentPath.endsWith("/") && path === "about.html");
-
-          if (isCurrentPage && hash && hash.length > 1) {
-            var targetEl = document.querySelector(hash);
-            if (targetEl) {
-              e.preventDefault();
-              lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
-              if (history.pushState) {
-                history.pushState(null, null, hash);
+            if (hash && hash.length > 1 && hash !== "#top") {
+              var targetEl = document.querySelector(hash);
+              if (targetEl) {
+                e.preventDefault();
+                lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
+                if (history.pushState) {
+                  history.pushState(null, null, hash);
+                }
+                return;
               }
+            } else {
+              e.preventDefault();
+              lenis.scrollTo(0, { duration: 1.2 });
+              if (hash && history.pushState) {
+                history.pushState(null, null, window.location.pathname);
+              }
+              return;
             }
           }
         });
+
+        if (window.location.hash) {
+          setTimeout(function () {
+            var targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+              lenis.scrollTo(targetEl, { offset: -70, duration: 1.0 });
+            }
+          }, 250);
+        }
 
         var bttBtn = document.getElementById("backToTopBtn");
         if (bttBtn) {

@@ -860,8 +860,9 @@
                 </h2>
                 <p class="touch-desc">
                   Have a question, need an urgent consultation, or want to book
-                  an appointment with Dr. Aswin? Reach out to us through any of
-                  the channels below or fill out the form.
+                  an appointment with Dr. Aswin Joseph N (Cheif Dental Surgeon)?
+                  Reach out to us through any of the channels below or fill out
+                  the form.
                 </p>
 
                 <div class="touch-list">
@@ -960,13 +961,14 @@
 
                   <div class="touch-form_group">
                     <label class="touch-form_label"
-                      >Subject <span class="required-star">*</span></label
+                      >Purpose of your visit
+                      <span class="required-star">*</span></label
                     >
                     <input
                       type="text"
                       name="subject"
                       class="touch-form_input"
-                      placeholder="Subject"
+                      placeholder="Purpose of your visit"
                       required
                     />
                   </div>
@@ -2016,34 +2018,60 @@
           requestAnimationFrame(raf);
         }
 
+        function isLinkToCurrentPage(href) {
+          if (!href || href === "#" || href === "#top" || href.startsWith("#!")) return true;
+          try {
+            var currentUrl = new URL(window.location.href);
+            var targetUrl = new URL(href, window.location.href);
+            var curPath = currentUrl.pathname.replace(/\/$/, "");
+            var tgtPath = targetUrl.pathname.replace(/\/$/, "");
+            if (curPath.endsWith("/index.html") || curPath === "") curPath = curPath.replace(/(^|\/)index\.html$/, "");
+            if (tgtPath.endsWith("/index.html") || tgtPath === "") tgtPath = tgtPath.replace(/(^|\/)index\.html$/, "");
+            return currentUrl.origin === targetUrl.origin && curPath === tgtPath;
+          } catch (e) {
+            return false;
+          }
+        }
+
         document.addEventListener("click", function (e) {
-          var target = e.target.closest('a[href*="#"]');
+          var target = e.target.closest('a[href]');
           if (!target) return;
           var href = target.getAttribute("href");
-          if (!href || href === "#" || href.startsWith("#!")) return;
+          if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("javascript:") || target.target === "_blank") return;
 
-          var hashIndex = href.indexOf("#");
-          var path = href.substring(0, hashIndex);
-          var hash = href.substring(hashIndex);
+          if (isLinkToCurrentPage(href)) {
+            var hashIndex = href.indexOf("#");
+            var hash = hashIndex !== -1 ? href.substring(hashIndex) : "";
 
-          var currentPath = window.location.pathname;
-          var isCurrentPage =
-            !path ||
-            path === "" ||
-            currentPath.endsWith(path) ||
-            (currentPath.endsWith("/") && path === "contact.html");
-
-          if (isCurrentPage && hash && hash.length > 1) {
-            var targetEl = document.querySelector(hash);
-            if (targetEl) {
-              e.preventDefault();
-              lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
-              if (history.pushState) {
-                history.pushState(null, null, hash);
+            if (hash && hash.length > 1 && hash !== "#top") {
+              var targetEl = document.querySelector(hash);
+              if (targetEl) {
+                e.preventDefault();
+                lenis.scrollTo(targetEl, { offset: -70, duration: 1.2 });
+                if (history.pushState) {
+                  history.pushState(null, null, hash);
+                }
+                return;
               }
+            } else {
+              e.preventDefault();
+              lenis.scrollTo(0, { duration: 1.2 });
+              if (hash && history.pushState) {
+                history.pushState(null, null, window.location.pathname);
+              }
+              return;
             }
           }
         });
+
+        if (window.location.hash) {
+          setTimeout(function () {
+            var targetEl = document.querySelector(window.location.hash);
+            if (targetEl) {
+              lenis.scrollTo(targetEl, { offset: -70, duration: 1.0 });
+            }
+          }, 250);
+        }
 
         var bttBtn = document.getElementById("backToTopBtn");
         if (bttBtn) {
