@@ -1228,13 +1228,10 @@
                   />
                 </div>
                 <div class="facility-body">
-                  <div class="facility-title">
-                    Specialist-Led Care (Dr. Aswin)
-                  </div>
+                  <div class="facility-title">Personalised Care</div>
                   <div class="facility-text">
-                    Led by Dr. Aswin (MDS Prosthodontist &amp; Implantologist),
-                    ensuring hospital-grade clinical precision and personalized
-                    care.
+                    Led by Dr. Aswin Joseph N — Cheif Dental Surgeon, ensuring
+                    hospital-grade clinical precision and personalised care.
                   </div>
                 </div>
               </div>
@@ -2019,25 +2016,37 @@
         }
 
         function isLinkToCurrentPage(href) {
-          if (!href || href === "#" || href === "#top" || href.startsWith("#!")) return true;
+          if (!href || href === "#" || href === "#top" || href.startsWith("#!"))
+            return true;
           try {
             var currentUrl = new URL(window.location.href);
             var targetUrl = new URL(href, window.location.href);
             var curPath = currentUrl.pathname.replace(/\/$/, "");
             var tgtPath = targetUrl.pathname.replace(/\/$/, "");
-            if (curPath.endsWith("/index.html") || curPath === "") curPath = curPath.replace(/(^|\/)index\.html$/, "");
-            if (tgtPath.endsWith("/index.html") || tgtPath === "") tgtPath = tgtPath.replace(/(^|\/)index\.html$/, "");
-            return currentUrl.origin === targetUrl.origin && curPath === tgtPath;
+            if (curPath.endsWith("/index.html") || curPath === "")
+              curPath = curPath.replace(/(^|\/)index\.html$/, "");
+            if (tgtPath.endsWith("/index.html") || tgtPath === "")
+              tgtPath = tgtPath.replace(/(^|\/)index\.html$/, "");
+            return (
+              currentUrl.origin === targetUrl.origin && curPath === tgtPath
+            );
           } catch (e) {
             return false;
           }
         }
 
         document.addEventListener("click", function (e) {
-          var target = e.target.closest('a[href]');
+          var target = e.target.closest("a[href]");
           if (!target) return;
           var href = target.getAttribute("href");
-          if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("javascript:") || target.target === "_blank") return;
+          if (
+            !href ||
+            href.startsWith("tel:") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("javascript:") ||
+            target.target === "_blank"
+          )
+            return;
 
           if (isLinkToCurrentPage(href)) {
             var hashIndex = href.indexOf("#");

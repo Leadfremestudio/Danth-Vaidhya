@@ -711,7 +711,7 @@
                           <strong>Dr. Aswin Joseph N</strong>
                           <span class="hero-doctor_sep">—</span>
                           <span class="hero-doctor_role"
-                            >Cheif Dental Sergeon</span
+                            >Cheif Dental Surgeon</span
                           >
                         </div>
                       </div>
@@ -1053,7 +1053,6 @@
                             <div class="our-story_item-title_wrap">
                               <h3 class="our-story_item-title">
                                 New patients come from word-of-mouth referrals
-                                the care
                               </h3>
                             </div>
                           </div>
@@ -1403,8 +1402,9 @@
                                         <p>
                                           Replace missing teeth and restore your
                                           natural smile and chewing power with
-                                          permanent dental implants, custom crowns,
-                                          bridges, and full-mouth prosthetics.
+                                          permanent dental implants, custom
+                                          crowns, bridges, and full-mouth
+                                          prosthetics.
                                         </p>
                                       </div>
                                       <div class="service-item_button">
@@ -1756,9 +1756,9 @@
                                         </div>
                                         <p>
                                           Maintain healthy teeth and gums with
-                                          regular checkups, digital X-rays,
-                                          deep cleaning, and preventive care to
-                                          stop dental problems before they start.
+                                          regular checkups, digital X-rays, deep
+                                          cleaning, and preventive care to stop
+                                          dental problems before they start.
                                         </p>
                                       </div>
                                       <div class="service-item_button">
@@ -3056,15 +3056,20 @@
         }
 
         function isLinkToCurrentPage(href) {
-          if (!href || href === "#" || href === "#top" || href.startsWith("#!")) return true;
+          if (!href || href === "#" || href === "#top" || href.startsWith("#!"))
+            return true;
           try {
             var currentUrl = new URL(window.location.href);
             var targetUrl = new URL(href, window.location.href);
             var curPath = currentUrl.pathname.replace(/\/$/, "");
             var tgtPath = targetUrl.pathname.replace(/\/$/, "");
-            if (curPath.endsWith("/index.html") || curPath === "") curPath = curPath.replace(/(^|\/)index\.html$/, "");
-            if (tgtPath.endsWith("/index.html") || tgtPath === "") tgtPath = tgtPath.replace(/(^|\/)index\.html$/, "");
-            return currentUrl.origin === targetUrl.origin && curPath === tgtPath;
+            if (curPath.endsWith("/index.html") || curPath === "")
+              curPath = curPath.replace(/(^|\/)index\.html$/, "");
+            if (tgtPath.endsWith("/index.html") || tgtPath === "")
+              tgtPath = tgtPath.replace(/(^|\/)index\.html$/, "");
+            return (
+              currentUrl.origin === targetUrl.origin && curPath === tgtPath
+            );
           } catch (e) {
             return false;
           }
@@ -3072,10 +3077,17 @@
 
         // Smooth scroll for anchor and same-page navigation
         document.addEventListener("click", function (e) {
-          var target = e.target.closest('a[href]');
+          var target = e.target.closest("a[href]");
           if (!target) return;
           var href = target.getAttribute("href");
-          if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("javascript:") || target.target === "_blank") return;
+          if (
+            !href ||
+            href.startsWith("tel:") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("javascript:") ||
+            target.target === "_blank"
+          )
+            return;
 
           if (isLinkToCurrentPage(href)) {
             var hashIndex = href.indexOf("#");
