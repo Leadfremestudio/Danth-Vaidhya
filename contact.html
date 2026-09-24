@@ -1883,6 +1883,29 @@
                 <div class="text-color-dark">
                   &copy; 2026 Danth Vaidhya Dental Clinic &amp; Implant Centre.
                 </div>
+                <div class="footer-credit_wrap">
+                  <a
+                    href="https://www.zinklysolutions.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="footer-credit_link"
+                    title="Visit Zinkly Solutions"
+                  >
+                    <span class="footer-credit_text">Designed &amp; Developed by</span>
+                    <img
+                      src="assets/img/zinkly-logo.png"
+                      alt="Zinkly Solutions"
+                      class="footer-credit_logo"
+                      loading="lazy"
+                    />
+                  </a>
+                  <span class="footer-credit_sep">&bull;</span>
+                  <a
+                    href="tel:+917558077856"
+                    class="footer-credit_phone"
+                    title="Call Zinkly Solutions"
+                  >+91 755 807 7856</a>
+                </div>
               </div>
             </div>
           </div>
@@ -1935,23 +1958,42 @@
       </a>
     </div>
 
-    <!-- BACK TO TOP SCROLL SCRIPT -->
+    <!-- FLOATING ACTION BUTTONS SCROLL SCRIPT -->
     <script>
       (function () {
         var bttBtn = document.getElementById("backToTopBtn");
-        if (!bttBtn) return;
-        function toggleBackToTop() {
-          if (window.scrollY > 300) {
-            bttBtn.classList.add("is-visible");
-          } else {
-            bttBtn.classList.remove("is-visible");
+        var floatWrap = document.querySelector(".floating-actions_wrap");
+        var footer = document.querySelector(".section_footer");
+
+        function updateFloatingButtons() {
+          var scrollY = window.scrollY || window.pageYOffset;
+          if (bttBtn) {
+            if (scrollY > 300) {
+              bttBtn.classList.add("is-visible");
+            } else {
+              bttBtn.classList.remove("is-visible");
+            }
+          }
+          if (floatWrap && footer) {
+            var footerRect = footer.getBoundingClientRect();
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            if (footerRect.top <= windowHeight - 10) {
+              floatWrap.classList.add("is-footer-hidden");
+            } else {
+              floatWrap.classList.remove("is-footer-hidden");
+            }
           }
         }
-        window.addEventListener("scroll", toggleBackToTop, { passive: true });
-        toggleBackToTop();
-        bttBtn.addEventListener("click", function () {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
+
+        window.addEventListener("scroll", updateFloatingButtons, { passive: true });
+        window.addEventListener("resize", updateFloatingButtons, { passive: true });
+        updateFloatingButtons();
+
+        if (bttBtn) {
+          bttBtn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
       })();
     </script>
 
