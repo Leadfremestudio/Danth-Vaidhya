@@ -930,6 +930,8 @@
               <div class="touch-form_card">
                 <form
                   class="contact-touch-form"
+                  action="https://docs.google.com/forms/d/e/1FAIpQLSc74oz1gZXMx9Km99VvFHot7FaX6FYXWQsOUBNKbMHl0oxb6Q/formResponse"
+                  method="POST"
                   onsubmit="return handleContactSubmit(event);"
                 >
                   <div class="touch-form_row">
@@ -939,7 +941,7 @@
                       >
                       <input
                         type="text"
-                        name="name"
+                        name="entry.281339464"
                         class="touch-form_input"
                         placeholder="Enter Your Name Here"
                         required
@@ -951,9 +953,13 @@
                       >
                       <input
                         type="tel"
-                        name="phone"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                        name="entry.465356712"
                         class="touch-form_input"
-                        placeholder="Number"
+                        placeholder="Enter Phone Number"
+                        maxlength="15"
                         required
                       />
                     </div>
@@ -966,7 +972,7 @@
                     >
                     <input
                       type="text"
-                      name="subject"
+                      name="entry.1374733929"
                       class="touch-form_input"
                       placeholder="Purpose of your visit"
                       required
@@ -978,7 +984,7 @@
                       >Comments <span class="required-star">*</span></label
                     >
                     <textarea
-                      name="comments"
+                      name="entry.1633851477"
                       class="touch-form_textarea"
                       placeholder="Comments"
                       rows="4"
@@ -2139,55 +2145,60 @@
       })();
     </script>
 
-    <!-- FORM SUBMISSION & WHATSAPP REDIRECT -->
+    <!-- FORM SUBMISSION (GOOGLE FORM) -->
     <script>
+      var GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc74oz1gZXMx9Km99VvFHot7FaX6FYXWQsOUBNKbMHl0oxb6Q/formResponse";
+
       function handleContactSubmit(e) {
         e.preventDefault();
         var f = e.target;
-        var name = (f.querySelector('input[name="name"]').value || "").trim();
-        var phone = (f.querySelector('input[name="phone"]').value || "").trim();
-        var email = (
-          f.querySelector('input[name="email"]')
-            ? f.querySelector('input[name="email"]').value
-            : ""
-        ).trim();
-        var subject = (
-          f.querySelector('input[name="subject"]')
-            ? f.querySelector('input[name="subject"]').value
-            : ""
-        ).trim();
-        var comments = (
-          f.querySelector('textarea[name="comments"]')
-            ? f.querySelector('textarea[name="comments"]').value
-            : f.querySelector('textarea[name="notes"]')
-              ? f.querySelector('textarea[name="notes"]').value
-              : ""
-        ).trim();
+
+        var nameInput = f.querySelector('input[name="entry.281339464"]') || f.querySelector('input[name="name"]');
+        var phoneInput = f.querySelector('input[name="entry.465356712"]') || f.querySelector('input[name="phone"]');
+        var subjectInput = f.querySelector('input[name="entry.1374733929"]') || f.querySelector('input[name="subject"]');
+        var commentsInput = f.querySelector('textarea[name="entry.1633851477"]') || f.querySelector('textarea[name="comments"]');
+
+        var name = (nameInput ? nameInput.value : "").trim();
+        var phone = (phoneInput ? phoneInput.value : "").trim();
+        var subject = (subjectInput ? subjectInput.value : "").trim();
+        var comments = (commentsInput ? commentsInput.value : "").trim();
 
         if (!name || !phone) return false;
 
-        var text =
-          "Hi Danth Vaidhya Dental Clinic, I am reaching out through the website contact form:%0A%0A" +
-          "*Name:* " +
-          encodeURIComponent(name) +
-          "%0A" +
-          "*Phone:* " +
-          encodeURIComponent(phone) +
-          (email ? "%0A*Email:* " + encodeURIComponent(email) : "") +
-          (subject ? "%0A*Subject:* " + encodeURIComponent(subject) : "") +
-          (comments ? "%0A*Comments:* " + encodeURIComponent(comments) : "");
+        var submitBtn = f.querySelector('button[type="submit"]');
+        var originalBtnHtml = submitBtn ? submitBtn.innerHTML : "";
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.7";
+        }
 
-        try {
-          window.open("https://wa.me/919249052513?text=" + text, "_blank");
-        } catch (_) {}
+        // Prepare Form Data for Google Form
+        var formData = new FormData();
+        formData.append("entry.281339464", name);
+        formData.append("entry.465356712", phone);
+        formData.append("entry.1374733929", subject);
+        formData.append("entry.1633851477", comments);
 
-        var card =
-          f.closest(".touch-form_card") || f.closest(".contact-form_card");
+        // Submit to Google Form asynchronously
+        var formAction = f.getAttribute("action") || GOOGLE_FORM_ACTION_URL;
+        if (formAction && formAction.indexOf("YOUR_FORM_ID") === -1) {
+          fetch(formAction, {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+          }).catch(function(err) {
+            console.error("Google form submission error:", err);
+          });
+        }
+
+        // Show success state
+        var card = f.closest(".touch-form_card") || f.closest(".contact-form_card");
         if (card) {
           f.style.display = "none";
           var ok = card.querySelector(".contact-success_state");
           if (ok) ok.style.display = "block";
         }
+
         return false;
       }
     </script>
